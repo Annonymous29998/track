@@ -7,9 +7,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
     <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
     <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-    <link rel="preload" href="assets/loading-label.png" as="image">
-    <link rel="preload" href="assets/loading-plane.png" as="image">
-    <link rel="preload" href="assets/loading-logo.png" as="image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -62,19 +61,19 @@
                 <h2 class="m-headline-lg" data-i18n="headline"></h2>
 
                 <section class="m-promo" data-i18n-attr="aria-label:promo1Aria">
-                    <img class="m-promo-img" src="images/image1.png" alt="" width="800" height="500" decoding="async">
+                    <img class="m-promo-img" src="images/image1.png" alt="" width="800" height="500" decoding="async" loading="lazy" fetchpriority="low">
                     <h3 class="m-promo-title" data-i18n="promo1Title"></h3>
                     <p class="m-promo-text" data-i18n-html="promo1Html"></p>
                 </section>
 
                 <section class="m-promo" data-i18n-attr="aria-label:promo2Aria">
-                    <img class="m-promo-img" src="images/image2.png" alt="" width="800" height="500" decoding="async">
+                    <img class="m-promo-img" src="images/image2.png" alt="" width="800" height="500" decoding="async" loading="lazy" fetchpriority="low">
                     <h3 class="m-promo-title" data-i18n="promo2Title"></h3>
                     <p class="m-promo-text" data-i18n-html="promo2Html"></p>
                 </section>
 
                 <div class="m-home-mid-visual">
-                    <img class="m-promo-img" src="images/image3.png" alt="" width="800" height="500" decoding="async">
+                    <img class="m-promo-img" src="images/image3.png" alt="" width="800" height="500" decoding="async" loading="lazy" fetchpriority="low">
                 </div>
 
                 <section class="m-support-block">
@@ -191,20 +190,20 @@
         <div class="tracking-loader__card" id="trackingLoaderCard" role="status" aria-live="polite" data-i18n-attr="aria-label:loaderAria">
             <div class="tracking-loader__inner">
                 <div class="tracking-loader__layer tracking-loader__layer--label">
-                    <img src="assets/loading-label.png" alt="" width="320" height="200" decoding="async" class="tracking-loader__img">
+                    <img data-src="assets/loading-label.png" alt="" width="320" height="200" decoding="async" class="tracking-loader__img">
                 </div>
                 <div class="tracking-loader__layer tracking-loader__layer--plane">
                     <div class="tracking-loader__plane-wrap">
-                        <img src="assets/loading-plane.png" alt="" width="320" height="200" decoding="async" class="tracking-loader__img tracking-loader__img--plane">
+                        <img data-src="assets/loading-plane.png" alt="" width="320" height="200" decoding="async" class="tracking-loader__img tracking-loader__img--plane">
                     </div>
                 </div>
                 <div class="tracking-loader__layer tracking-loader__layer--logo">
-                    <img src="assets/loading-logo.png" alt="" width="280" height="160" decoding="async" class="tracking-loader__img">
+                    <img data-src="assets/loading-logo.png" alt="" width="280" height="160" decoding="async" class="tracking-loader__img">
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 </html>

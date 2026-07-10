@@ -150,12 +150,16 @@ body {
 
 .m-home-mid-visual {
     border-bottom: 1px solid #ebebeb;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 320px;
 }
 
 /* Support + FAQ (fedex.com mobile) */
 .m-support-block {
     padding: 36px max(18px, env(safe-area-inset-left, 0px), env(safe-area-inset-right, 0px)) 32px;
     text-align: center;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 480px;
 }
 
 .m-support-heading {
@@ -667,6 +671,8 @@ body {
 /* Promo blocks */
 .m-promo {
     margin-bottom: 8px;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 420px;
 }
 
 .m-promo-img {

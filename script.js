@@ -343,10 +343,44 @@ document.addEventListener('DOMContentLoaded', function () {
         backToTop.hidden = window.scrollY < 280;
     }
 
-    ['assets/loading-label.png', 'assets/loading-plane.png', 'assets/loading-logo.png'].forEach(function (src) {
-        const im = new Image();
-        im.src = src;
-    });
+    const LOADER_IMAGE_SRCS = [
+        'assets/loading-label.png',
+        'assets/loading-plane.png',
+        'assets/loading-logo.png'
+    ];
+    let loaderImagesPrimed = false;
+
+    function primeLoaderImages() {
+        if (loaderImagesPrimed) {
+            return;
+        }
+        loaderImagesPrimed = true;
+        LOADER_IMAGE_SRCS.forEach(function (src) {
+            const im = new Image();
+            im.src = src;
+        });
+        if (trackingLoader) {
+            trackingLoader.querySelectorAll('img[data-src]').forEach(function (img) {
+                const src = img.getAttribute('data-src');
+                if (src && !img.getAttribute('src')) {
+                    img.setAttribute('src', src);
+                }
+            });
+        }
+    }
+
+    if ('requestIdleCallback' in window) {
+        requestIdleCallback(function () {
+            primeLoaderImages();
+        }, { timeout: 3000 });
+    } else {
+        setTimeout(primeLoaderImages, 2500);
+    }
+
+    if (trackButton) {
+        trackButton.addEventListener('pointerenter', primeLoaderImages, { once: true, passive: true });
+        trackButton.addEventListener('focus', primeLoaderImages, { once: true });
+    }
 
     /* FedEx-style: white ring + thin purple stroke, truck profile facing right → */
     const truckSvg =
@@ -1068,6 +1102,8 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function runTrackingLoadSequence(onDone) {
+        primeLoaderImages();
+
         if (!trackingLoader || typeof onDone !== 'function') {
             onDone();
             return;
