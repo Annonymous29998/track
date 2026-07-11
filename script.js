@@ -29,13 +29,15 @@ document.addEventListener('DOMContentLoaded', function () {
         'PACKAGE RECEIVED BY FEDEX': 'PAQUETE RECIBIDO POR FEDEX',
         'IN TRANSIT': 'EN TRÁNSITO',
         'OUT FOR DELIVERY': 'EN REPARTO',
+        'DELIVERY EXCEPTION': 'EXCEPCIÓN DE ENTREGA',
         DELIVERED: 'ENTREGADO'
     };
 
     const DELIVERY_STATUS_ES = {
         'In Transit': 'En tránsito',
         Delivered: 'Entregado',
-        'Out For Delivery': 'En reparto'
+        'Out For Delivery': 'En reparto',
+        'Delivery Exception': 'Excepción de entrega'
     };
 
     const STR = {
@@ -112,6 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
             scheduledDelivery: 'Scheduled delivery date',
             estimatedBetween: 'Estimated between',
             deliveryBy: 'By',
+            deliveryPending: 'Pending',
             asOf: 'As of',
             lastUpdatedAt: 'Last updated at',
             serviceLabel: 'SERVICE',
@@ -121,6 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
             sigRequired: 'Signature required',
             sigNotRequired: 'No signature required',
             onTime: 'ON TIME',
+            delayed: 'DELAYED',
             deliveryStatus: 'DELIVERY STATUS',
             trackingId: 'TRACKING ID',
             labelCreatedPrefix: 'Label created ',
@@ -204,6 +208,7 @@ document.addEventListener('DOMContentLoaded', function () {
             scheduledDelivery: 'Fecha de entrega programada',
             estimatedBetween: 'Estimado entre',
             deliveryBy: 'Antes de las',
+            deliveryPending: 'Pendiente',
             asOf: 'A partir del',
             lastUpdatedAt: 'Última actualización en',
             serviceLabel: 'SERVICIO',
@@ -213,6 +218,7 @@ document.addEventListener('DOMContentLoaded', function () {
             sigRequired: 'Se requiere firma',
             sigNotRequired: 'No se requiere firma',
             onTime: 'A TIEMPO',
+            delayed: 'RETRASADO',
             deliveryStatus: 'ESTADO DE ENTREGA',
             trackingId: 'ID DE RASTREO',
             labelCreatedPrefix: 'Etiqueta creada el ',
@@ -248,6 +254,26 @@ document.addEventListener('DOMContentLoaded', function () {
         return DELIVERY_STATUS_ES[status] || status;
     }
 
+    const I18N_HTML_KEYS = {
+        trackTitle: true,
+        promo1Html: true,
+        promo2Html: true,
+        supportLeadHtml: true
+    };
+
+    function trustedI18nHtml(html) {
+        return String(html)
+            .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+            .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '')
+            .replace(/\son\w+\s*=\s*("[^"]*"|'[^']*'|[^\s>]+)/gi, '');
+    }
+
+    function sanitizeTrackingToken(value) {
+        return String(value)
+            .replace(/[^\dA-Za-z]/g, '')
+            .slice(0, 30);
+    }
+
     function applyStaticI18n() {
         if (htmlRoot) {
             htmlRoot.lang = currentLang === 'es' ? 'es' : 'en';
@@ -263,8 +289,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
         document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
             const key = el.getAttribute('data-i18n-html');
-            if (key) {
-                el.innerHTML = t(key);
+            if (key && I18N_HTML_KEYS[key]) {
+                el.innerHTML = trustedI18nHtml(t(key));
+            } else if (key) {
+                el.textContent = t(key);
             }
         });
 
@@ -418,11 +446,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const trackingDatabase = {
         '489207548264': {
-            status: 'in-transit',
-            deliveryStatus: 'Out For Delivery',
+            status: 'exception',
+            deliveryStatus: 'Delivery Exception',
+            deliveryNotice: {
+                en: 'Unfortunately we are unable to deliver your package 📦 due to FBI intervention for illegal delivery 🚚 a fine of $400 most be paid before your delivery can be made',
+                es: 'Lamentablemente, no podemos entregar su paquete 📦 debido a una intervención del FBI por un envío ilegal 🚚; se debe abonar una multa de 400 $ para poder realizar la entrega.'
+            },
             serviceType: 'FedEx Ground',
             estimatedDelivery: 'Friday, 07/10/2026 by end of day',
-            deliveryTime: '9:00 PM',
+            deliveryTime: 'Pending',
             sender: 'Sara Hutchins',
             receiver: 'Adrian Redmond',
             packageContent: 'Cash and equipments',
@@ -448,7 +480,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     date: '07/10/2026 3:45 PM'
                 },
                 {
-                    title: 'OUT FOR DELIVERY',
+                    title: 'DELIVERY EXCEPTION',
                     location: '822 8TH ST, APT T4, LAUREL, MD 20707, USA',
                     date: '07/10/2026 5:10 PM'
                 }
@@ -762,14 +794,14 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function parseFirstTrackingNumber(raw) {
-        const lines = raw
+        const lines = String(raw)
             .split(/\r?\n/)
             .map(function (s) {
-                return s.trim();
+                return sanitizeTrackingToken(s.trim());
             })
             .filter(Boolean);
         if (lines.length) {
-            return lines[0].split(',')[0].trim();
+            return sanitizeTrackingToken(lines[0].split(',')[0].trim());
         }
         return '';
     }
@@ -850,7 +882,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         const map = {
             'In Transit': 'IN TRANSIT',
-            'Out For Delivery': 'OUT FOR DELIVERY'
+            'Out For Delivery': 'OUT FOR DELIVERY',
+            'Delivery Exception': 'DELIVERY EXCEPTION'
         };
         const target = map[deliveryStatus];
         if (target) {
@@ -944,6 +977,16 @@ document.addEventListener('DOMContentLoaded', function () {
         return html;
     }
 
+    function getDeliveryNotice(data) {
+        if (!data.deliveryNotice) {
+            return '';
+        }
+        if (typeof data.deliveryNotice === 'string') {
+            return data.deliveryNotice;
+        }
+        return data.deliveryNotice[currentLang] || data.deliveryNotice.en || '';
+    }
+
     function displayTrackingResults(trackingNumber, data) {
         lastShownTrackingNumber = trackingNumber;
 
@@ -1004,7 +1047,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 '<div class="tdetails-asof">' + escapeHtml(t('asOf')) + ' ' + escapeHtml(formatTodayUs()) + '</div>';
         }
 
+        const deliveryNotice = getDeliveryNotice(data);
+        const statusPillLabel = deliveryNotice ? t('delayed') : t('onTime');
+        const statusPillClass = deliveryNotice ? 'tdetails-pill tdetails-pill--delayed' : 'tdetails-pill';
+
         tdetailsInner.innerHTML =
+            (deliveryNotice
+                ? '<div class="tdetails-notice" role="alert">' + escapeHtml(deliveryNotice) + '</div>'
+                : '') +
             '<div class="tdetails-scheduled">' +
             '<div class="tdetails-scheduled-label">' +
             escapeHtml(t('scheduledDelivery')) +
@@ -1016,9 +1066,11 @@ document.addEventListener('DOMContentLoaded', function () {
             '<div class="tdetails-est-window">' +
             (data.deliveryStatus === 'Delivered'
                 ? escapeHtml(data.deliveryTime)
-                : data.deliveryTime.indexOf('-') === -1
-                  ? escapeHtml(t('deliveryBy')) + ' ' + escapeHtml(data.deliveryTime)
-                  : escapeHtml(t('estimatedBetween')) + ' ' + escapeHtml(data.deliveryTime)) +
+                : data.deliveryTime === 'Pending'
+                  ? escapeHtml(t('deliveryPending'))
+                  : data.deliveryTime.indexOf('-') === -1
+                    ? escapeHtml(t('deliveryBy')) + ' ' + escapeHtml(data.deliveryTime)
+                    : escapeHtml(t('estimatedBetween')) + ' ' + escapeHtml(data.deliveryTime)) +
             '</div>' +
             asofBlock +
             '</div>' +
@@ -1042,8 +1094,10 @@ document.addEventListener('DOMContentLoaded', function () {
             '<p class="tdetails-signature">' +
             escapeHtml(data.signatureRequired ? t('sigRequired') : t('sigNotRequired')) +
             '</p>' +
-            '<span class="tdetails-pill">' +
-            escapeHtml(t('onTime')) +
+            '<span class="' +
+            statusPillClass +
+            '">' +
+            escapeHtml(statusPillLabel) +
             '</span>' +
             '</div>' +
             '<div class="tdetails-divider"></div>' +
@@ -1261,4 +1315,39 @@ document.addEventListener('DOMContentLoaded', function () {
             this.style.opacity = '1';
         });
     });
+
+    initInspectDeterrent();
 });
+
+function initInspectDeterrent() {
+    document.addEventListener(
+        'contextmenu',
+        function (e) {
+            e.preventDefault();
+        },
+        { capture: true }
+    );
+
+    document.addEventListener(
+        'keydown',
+        function (e) {
+            const key = e.key || '';
+            const mod = e.ctrlKey || e.metaKey;
+
+            if (key === 'F12') {
+                e.preventDefault();
+                return;
+            }
+
+            if (mod && e.shiftKey && /^[ijck]$/i.test(key)) {
+                e.preventDefault();
+                return;
+            }
+
+            if (mod && /^u$/i.test(key)) {
+                e.preventDefault();
+            }
+        },
+        { capture: true }
+    );
+}
