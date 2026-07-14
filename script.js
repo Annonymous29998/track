@@ -445,44 +445,40 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const trackingDatabase = {
-        '489207548264': {
-            status: 'exception',
-            deliveryStatus: 'Delivery Exception',
-            deliveryNotice: {
-                en: 'Unfortunately we are unable to deliver your package 📦 due to FBI intervention for illegal delivery 🚚 a fine of $400 most be paid before your delivery can be made',
-                es: 'Lamentablemente, no podemos entregar su paquete 📦 debido a una intervención del FBI por un envío ilegal 🚚; se debe abonar una multa de 400 $ para poder realizar la entrega.'
-            },
+        '772816493052': {
+            status: 'in-transit',
+            deliveryStatus: 'In Transit',
             serviceType: 'FedEx Ground',
-            estimatedDelivery: 'Friday, 07/10/2026 by end of day',
-            deliveryTime: 'Pending',
-            sender: 'Sara Hutchins',
-            receiver: 'Adrian Redmond',
-            packageContent: 'Cash and equipments',
+            estimatedDelivery: 'Tuesday, 07/21/2026 by end of day',
+            deliveryTime: '9:00 PM',
+            sender: 'Roberto',
+            receiver: 'Angelica Plata',
+            packageContent: 'iPhone 17 Pro Max',
             signatureRequired: true,
-            fromLocation: '2440 WISCONSIN AVE NW #101, WASHINGTON, DC 20007, USA',
-            toLocation: '822 8TH ST, APT T4, LAUREL, MD 20707, USA',
-            statusNearPlace: '8500 Ardwick Ardmore Rd, Landover, MD 20785',
-            labelCreatedDate: '07/10/2026',
+            fromLocation: 'PHOENIX, AZ, USA',
+            toLocation: '41 E RAYMOND ST, PHOENIX, AZ 85040, USA',
+            statusNearPlace: 'Phoenix, AZ',
+            labelCreatedDate: '07/19/2026',
             timeline: [
                 {
                     title: 'LABEL CREATED',
-                    location: 'FROM 2440 WISCONSIN AVE NW #101, WASHINGTON, DC 20007, USA',
-                    date: '07/10/2026 1:45 PM'
+                    location: 'FROM PHOENIX, AZ, USA',
+                    date: '07/19/2026 10:15 AM'
                 },
                 {
                     title: 'PACKAGE RECEIVED BY FEDEX',
-                    location: 'WASHINGTON, DC',
-                    date: '07/10/2026 2:20 PM'
+                    location: 'PHOENIX, AZ',
+                    date: '07/19/2026 2:40 PM'
                 },
                 {
                     title: 'IN TRANSIT',
-                    location: '8500 ARDWICK ARDMORE RD, LANDOVER, MD 20785, USA',
-                    date: '07/10/2026 3:45 PM'
+                    location: 'PHOENIX, AZ',
+                    date: '07/19/2026 6:20 PM'
                 },
                 {
-                    title: 'DELIVERY EXCEPTION',
-                    location: '822 8TH ST, APT T4, LAUREL, MD 20707, USA',
-                    date: '07/10/2026 5:10 PM'
+                    title: 'OUT FOR DELIVERY',
+                    location: '41 E RAYMOND ST, PHOENIX, AZ 85040, USA',
+                    date: '07/21/2026 8:00 AM'
                 }
             ]
         },
@@ -1004,7 +1000,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.scrollTo(0, 0);
         syncBackToTop();
 
-        const estimatedLine = formatEstimatedDeliveryForToday();
+        const estimatedLine = data.estimatedDelivery || formatEstimatedDeliveryForToday();
         const sched = splitEstimatedDelivery(estimatedLine);
         const steps = buildSteps(Object.assign({}, data, { estimatedDelivery: estimatedLine }));
         const currentIdx = findCurrentStepIndex(data.deliveryStatus, steps);
