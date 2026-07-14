@@ -1320,7 +1320,7 @@ body {
     color: #111;
 }
 
-/* Vertical timeline — purple rail with white ring dots (FedEx-style) */
+/* Vertical timeline — full rail (gray) + purple progress (FedEx-style) */
 .tdetails-timeline {
     position: relative;
     margin-top: 28px;
@@ -1328,22 +1328,32 @@ body {
     --line-split: 50%;
 }
 
+/* Full-height base rail (future / remaining path) */
 .tdetails-timeline::before {
     content: '';
     position: absolute;
     left: 16px;
-    top: 10px;
-    bottom: 28px;
+    top: 14px;
+    bottom: 14px;
     width: 5px;
     border-radius: 2px;
-    background: linear-gradient(
-        180deg,
-        var(--purple) 0%,
-        var(--purple) var(--line-split),
-        #d8d8d8 var(--line-split),
-        #d8d8d8 100%
-    );
+    background: #d0d0d0;
     z-index: 0;
+}
+
+/* Purple progress overlay — stops at current truck/status */
+.tdetails-timeline::after {
+    content: '';
+    position: absolute;
+    left: 16px;
+    top: 14px;
+    width: 5px;
+    height: var(--line-split);
+    max-height: calc(100% - 28px);
+    border-radius: 2px;
+    background: var(--purple);
+    z-index: 0;
+    pointer-events: none;
 }
 
 .tdetail-step {

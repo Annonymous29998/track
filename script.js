@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const trackingLoaderCard = document.getElementById('trackingLoaderCard');
     const htmlRoot = document.getElementById('htmlRoot');
 
-    const LANG_STORAGE_KEY = 'fedex-demo-lang';
+    const LANG_STORAGE_KEY = 'fedex-track-lang';
     let currentLang = localStorage.getItem(LANG_STORAGE_KEY) || 'en';
     if (currentLang !== 'en' && currentLang !== 'es') {
         currentLang = 'en';
@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
             labelCreatedPrefix: 'Label created ',
             notifEmpty: 'Please enter a tracking number',
             notifWrong: 'Please enter the correct tracking number',
-            notifMulti: 'Demo: showing results for the first number only.',
+            notifMulti: 'Showing results for the first number only.',
             needHelpToast:
                 'Tracking numbers are often 12 digits and appear on your receipt or shipping confirmation email.',
             copyrightLine: '© FedEx 1995–2026'
@@ -224,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function () {
             labelCreatedPrefix: 'Etiqueta creada el ',
             notifEmpty: 'Ingrese un número de rastreo',
             notifWrong: 'Ingrese un número de rastreo correcto',
-            notifMulti: 'Demo: se muestran resultados solo para el primer número.',
+            notifMulti: 'Se muestran resultados solo para el primer número.',
             needHelpToast:
                 'Los números de rastreo suelen tener 12 dígitos y aparecen en su recibo o correo de confirmación de envío.',
             copyrightLine: '© FedEx 1995–2026'
@@ -359,6 +359,186 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     let detailsLiveIntervalId = null;
+    let lastScanStageIdx = null;
+
+    function parseUsDateTimeInZone(dateStr, timeZone) {
+        const m = String(dateStr || '')
+            .trim()
+            .match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})(?:\s+(\d{1,2}):(\d{2})\s*(AM|PM))?$/i);
+        if (!m) {
+            return null;
+        }
+        const year = Number(m[3]);
+        const month = Number(m[1]);
+        const day = Number(m[2]);
+        let hour = 0;
+        let minute = 0;
+        if (m[4]) {
+            hour = Number(m[4]);
+            minute = Number(m[5]);
+            const ap = String(m[6]).toUpperCase();
+            if (ap === 'AM') {
+                if (hour === 12) {
+                    hour = 0;
+                }
+            } else if (hour !== 12) {
+                hour += 12;
+            }
+        }
+        const tz = timeZone || 'UTC';
+        const fmt = new Intl.DateTimeFormat('en-US', {
+            timeZone: tz,
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        });
+        function zoneParts(d) {
+            const map = {};
+            fmt.formatToParts(d).forEach(function (p) {
+                if (p.type !== 'literal') {
+                    map[p.type] = p.value;
+                }
+            });
+            return map;
+        }
+        let utc = Date.UTC(year, month - 1, day, hour, minute, 0);
+        for (let i = 0; i < 4; i++) {
+            const p = zoneParts(new Date(utc));
+            let shownHour = Number(p.hour);
+            if (shownHour === 24) {
+                shownHour = 0;
+            }
+            const asWanted = Date.UTC(year, month - 1, day, hour, minute, 0);
+            const asShown = Date.UTC(
+                Number(p.year),
+                Number(p.month) - 1,
+                Number(p.day),
+                shownHour,
+                Number(p.minute),
+                Number(p.second || 0)
+            );
+            utc += asWanted - asShown;
+        }
+        return new Date(utc);
+    }
+
+    function deliveryStatusFromScanTitle(title) {
+        if (title === 'DELIVERED' || title === 'TO') {
+            return 'Delivered';
+        }
+        if (title === 'OUT FOR DELIVERY') {
+            return 'Out For Delivery';
+        }
+        if (title === 'DELIVERY EXCEPTION') {
+            return 'Delivery Exception';
+        }
+        return 'In Transit';
+    }
+
+    function formatStatusNearFromLocation(loc) {
+        const cleaned = String(loc || '')
+            .replace(/^FROM\s+/i, '')
+            .replace(/,\s*USA$/i, '')
+            .trim();
+        const parsed = parseUsCityStateFromLocation(cleaned);
+        if (parsed) {
+            return formatPlaceLabel(parsed);
+        }
+        return cleaned;
+    }
+
+    function locationMatchToken(loc) {
+        const u = String(loc || '').toUpperCase();
+        if (u.indexOf('TOLLESON') >= 0) {
+            return 'TOLLESON';
+        }
+        if (u.indexOf('CASA GRANDE') >= 0) {
+            return 'CASA GRANDE';
+        }
+        if (u.indexOf('RAYMOND') >= 0) {
+            return 'RAYMOND';
+        }
+        return u.split(',')[0].trim();
+    }
+
+    function findStepIndexForRouteStage(steps, stage) {
+        if (!stage || !stage.stepTitle) {
+            return -1;
+        }
+        for (let i = 0; i < steps.length; i++) {
+            if (steps[i].title !== stage.stepTitle) {
+                continue;
+            }
+            if (
+                stage.locationIncludes &&
+                String(steps[i].location || '')
+                    .toUpperCase()
+                    .indexOf(String(stage.locationIncludes).toUpperCase()) === -1
+            ) {
+                continue;
+            }
+            return i;
+        }
+        return -1;
+    }
+
+    /** FedEx-style: advance only when each scan's real date/time has passed. */
+    function applyScanTimelineProgress(data) {
+        const fallbackTz =
+            resolveIanaTimeZone(data.fromLocation) ||
+            resolveIanaTimeZone(data.toLocation) ||
+            'America/Phoenix';
+        const scans = [];
+        let labelDate = data.labelCreatedDate;
+        if (data.timeline && data.timeline.length && data.timeline[0].title === 'LABEL CREATED') {
+            labelDate = data.timeline[0].date || labelDate;
+        }
+        scans.push({
+            stepTitle: 'FROM',
+            location: data.fromLocation,
+            locationIncludes: null,
+            at: parseUsDateTimeInZone(labelDate, fallbackTz)
+        });
+        (data.timeline || []).forEach(function (ev) {
+            if (ev.title === 'LABEL CREATED') {
+                return;
+            }
+            const evTz = resolveIanaTimeZone(ev.location) || fallbackTz;
+            scans.push({
+                stepTitle: ev.title,
+                location: ev.location,
+                locationIncludes: locationMatchToken(ev.location),
+                at: parseUsDateTimeInZone(ev.date, evTz)
+            });
+        });
+
+        const now = Date.now();
+        let latest = 0;
+        for (let i = 0; i < scans.length; i++) {
+            if (scans[i].at && scans[i].at.getTime() <= now) {
+                latest = i;
+            }
+        }
+        const scan = scans[latest];
+        return {
+            data: Object.assign({}, data, {
+                deliveryStatus: deliveryStatusFromScanTitle(scan.stepTitle),
+                statusNearPlace: formatStatusNearFromLocation(scan.location)
+            }),
+            stageIdx: latest,
+            stage: {
+                stepTitle: scan.stepTitle,
+                locationIncludes:
+                    scan.stepTitle === 'IN TRANSIT' || scan.stepTitle === 'OUT FOR DELIVERY'
+                        ? scan.locationIncludes
+                        : null
+            }
+        };
+    }
 
     function syncBackToTop() {
         if (!backToTop) {
@@ -455,25 +635,30 @@ document.addEventListener('DOMContentLoaded', function () {
             receiver: 'Angelica Plata',
             packageContent: 'iPhone 17 Pro Max',
             signatureRequired: true,
-            fromLocation: 'PHOENIX, AZ, USA',
+            fromLocation: 'TUCSON, AZ, USA',
             toLocation: '41 E RAYMOND ST, PHOENIX, AZ 85040, USA',
-            statusNearPlace: 'Phoenix, AZ',
+            statusNearPlace: 'Tucson, AZ',
             labelCreatedDate: '07/19/2026',
             timeline: [
                 {
                     title: 'LABEL CREATED',
-                    location: 'FROM PHOENIX, AZ, USA',
+                    location: 'FROM TUCSON, AZ, USA',
                     date: '07/19/2026 10:15 AM'
                 },
                 {
                     title: 'PACKAGE RECEIVED BY FEDEX',
-                    location: 'PHOENIX, AZ',
+                    location: 'TUCSON, AZ',
                     date: '07/19/2026 2:40 PM'
                 },
                 {
                     title: 'IN TRANSIT',
-                    location: 'PHOENIX, AZ',
-                    date: '07/19/2026 6:20 PM'
+                    location: 'CASA GRANDE, AZ',
+                    date: '07/19/2026 8:15 PM'
+                },
+                {
+                    title: 'IN TRANSIT',
+                    location: '8501 W BUCKEYE RD, TOLLESON, AZ 85353, USA',
+                    date: '07/20/2026 6:40 AM'
                 },
                 {
                     title: 'OUT FOR DELIVERY',
@@ -781,6 +966,20 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             el.textContent = formatDateInZone(d, tz);
         });
+
+        if (
+            lastShownTrackingNumber &&
+            trackingResults &&
+            trackingResults.style.display === 'block'
+        ) {
+            const base = trackingDatabase[lastShownTrackingNumber];
+            if (base && base.timeline && base.timeline.length) {
+                const progressed = applyScanTimelineProgress(base);
+                if (progressed.stageIdx !== lastScanStageIdx) {
+                    displayTrackingResults(lastShownTrackingNumber, base);
+                }
+            }
+        }
     }
 
     function startDetailsLiveClock() {
@@ -897,8 +1096,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function renderTimeline(steps, currentIdx) {
-        const n = steps.length;
-        const splitPct = Math.min(95, Math.max(8, ((currentIdx + 0.5) / n) * 100));
+        const n = steps.length || 1;
+        /* Progress rail to the center of the current step; gray continues to TO */
+        const splitPct = Math.min(96, Math.max(10, ((currentIdx + 0.55) / n) * 100));
         let html =
             '<div class="tdetails-timeline" style="--line-split: ' +
             splitPct.toFixed(1) +
@@ -933,16 +1133,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             let dateLine;
-            if (isCurrent && step.timeZone) {
-                dateLine =
-                    '<span class="tdetails-live-time" data-iana="' +
-                    escapeHtml(step.timeZone) +
-                    '" data-format="datetime">' +
-                    escapeHtml(formatDateTimeInZone(new Date(), step.timeZone)) +
-                    '</span>';
-            } else if (isCurrent) {
-                dateLine = escapeHtml(formatNowUs());
-            } else if (step.title === 'FROM') {
+            if (step.title === 'FROM') {
                 dateLine = escapeHtml(t('labelCreatedPrefix')) + escapeHtml(step.date);
             } else {
                 dateLine = escapeHtml(step.date);
@@ -1000,10 +1191,20 @@ document.addEventListener('DOMContentLoaded', function () {
         window.scrollTo(0, 0);
         syncBackToTop();
 
+        const progressed = applyScanTimelineProgress(data);
+        data = progressed.data;
+        lastScanStageIdx = progressed.stageIdx;
+
         const estimatedLine = data.estimatedDelivery || formatEstimatedDeliveryForToday();
         const sched = splitEstimatedDelivery(estimatedLine);
         const steps = buildSteps(Object.assign({}, data, { estimatedDelivery: estimatedLine }));
-        const currentIdx = findCurrentStepIndex(data.deliveryStatus, steps);
+        let currentIdx = findCurrentStepIndex(data.deliveryStatus, steps);
+        if (progressed.stage) {
+            const stageIdx = findStepIndexForRouteStage(steps, progressed.stage);
+            if (stageIdx >= 0) {
+                currentIdx = stageIdx;
+            }
+        }
 
         const senderHtml = escapeHtml(data.sender).replace(/\n/g, '<br>');
         const receiverHtml = escapeHtml(data.receiver).replace(/\n/g, '<br>');
@@ -1237,6 +1438,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function resetTracking() {
         lastShownTrackingNumber = null;
+        lastScanStageIdx = null;
         clearDetailsLiveClock();
         trackingResults.style.display = 'none';
         if (trackingSection) {
