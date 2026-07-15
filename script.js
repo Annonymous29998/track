@@ -465,6 +465,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (u.indexOf('RAYMOND') >= 0) {
             return 'RAYMOND';
         }
+        if (u.indexOf('PHOENIX') >= 0) {
+            return 'PHOENIX';
+        }
         return u.split(',')[0].trim();
     }
 
@@ -641,32 +644,37 @@ document.addEventListener('DOMContentLoaded', function () {
             fromLocation: 'SAN DIEGO, CA, USA',
             toLocation: '41 E RAYMOND ST, PHOENIX, AZ 85040, USA',
             statusNearPlace: 'San Diego, CA',
-            labelCreatedDate: '07/15/2026',
+            labelCreatedDate: '07/14/2026',
             timeline: [
                 {
                     title: 'LABEL CREATED',
                     location: 'FROM SAN DIEGO, CA, USA',
-                    date: '07/15/2026 10:15 AM'
+                    date: '07/14/2026 10:15 AM'
                 },
                 {
                     title: 'PACKAGE RECEIVED BY FEDEX',
                     location: 'SAN DIEGO, CA',
-                    date: '07/15/2026 2:40 PM'
+                    date: '07/14/2026 4:05 PM'
                 },
                 {
                     title: 'IN TRANSIT',
                     location: 'INDIO, CA',
-                    date: '07/16/2026 9:20 AM'
+                    date: '07/15/2026 11:30 AM'
                 },
                 {
                     title: 'IN TRANSIT',
                     location: 'BLYTHE, CA',
-                    date: '07/17/2026 6:45 PM'
+                    date: '07/16/2026 3:10 PM'
+                },
+                {
+                    title: 'IN TRANSIT',
+                    location: 'PHOENIX, AZ',
+                    date: '07/18/2026 7:55 AM'
                 },
                 {
                     title: 'OUT FOR DELIVERY',
                     location: '41 E RAYMOND ST, PHOENIX, AZ 85040, USA',
-                    date: '07/19/2026 8:00 AM'
+                    date: '07/19/2026 8:12 AM'
                 }
             ]
         },
