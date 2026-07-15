@@ -453,11 +453,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function locationMatchToken(loc) {
         const u = String(loc || '').toUpperCase();
-        if (u.indexOf('TOLLESON') >= 0) {
-            return 'TOLLESON';
+        if (u.indexOf('BLYTHE') >= 0) {
+            return 'BLYTHE';
         }
-        if (u.indexOf('CASA GRANDE') >= 0) {
-            return 'CASA GRANDE';
+        if (u.indexOf('INDIO') >= 0) {
+            return 'INDIO';
+        }
+        if (u.indexOf('SAN DIEGO') >= 0) {
+            return 'SAN DIEGO';
         }
         if (u.indexOf('RAYMOND') >= 0) {
             return 'RAYMOND';
@@ -629,41 +632,41 @@ document.addEventListener('DOMContentLoaded', function () {
             status: 'in-transit',
             deliveryStatus: 'In Transit',
             serviceType: 'FedEx Ground',
-            estimatedDelivery: 'Tuesday, 07/21/2026 by end of day',
+            estimatedDelivery: 'Sunday, 07/19/2026 by end of day',
             deliveryTime: '9:00 PM',
             sender: 'Roberto',
             receiver: 'Angelica Plata',
             packageContent: 'iPhone 17 Pro Max',
             signatureRequired: true,
-            fromLocation: 'TUCSON, AZ, USA',
+            fromLocation: 'SAN DIEGO, CA, USA',
             toLocation: '41 E RAYMOND ST, PHOENIX, AZ 85040, USA',
-            statusNearPlace: 'Tucson, AZ',
-            labelCreatedDate: '07/19/2026',
+            statusNearPlace: 'San Diego, CA',
+            labelCreatedDate: '07/15/2026',
             timeline: [
                 {
                     title: 'LABEL CREATED',
-                    location: 'FROM TUCSON, AZ, USA',
-                    date: '07/19/2026 10:15 AM'
+                    location: 'FROM SAN DIEGO, CA, USA',
+                    date: '07/15/2026 10:15 AM'
                 },
                 {
                     title: 'PACKAGE RECEIVED BY FEDEX',
-                    location: 'TUCSON, AZ',
-                    date: '07/19/2026 2:40 PM'
+                    location: 'SAN DIEGO, CA',
+                    date: '07/15/2026 2:40 PM'
                 },
                 {
                     title: 'IN TRANSIT',
-                    location: 'CASA GRANDE, AZ',
-                    date: '07/19/2026 8:15 PM'
+                    location: 'INDIO, CA',
+                    date: '07/16/2026 9:20 AM'
                 },
                 {
                     title: 'IN TRANSIT',
-                    location: '8501 W BUCKEYE RD, TOLLESON, AZ 85353, USA',
-                    date: '07/20/2026 6:40 AM'
+                    location: 'BLYTHE, CA',
+                    date: '07/17/2026 6:45 PM'
                 },
                 {
                     title: 'OUT FOR DELIVERY',
                     location: '41 E RAYMOND ST, PHOENIX, AZ 85040, USA',
-                    date: '07/21/2026 8:00 AM'
+                    date: '07/19/2026 8:00 AM'
                 }
             ]
         },
@@ -791,6 +794,9 @@ document.addEventListener('DOMContentLoaded', function () {
         'HIXSON,TN': 'America/New_York',
         'NORCROSS,GA': 'America/New_York',
         'EAST POINT,GA': 'America/New_York',
+        'SAN DIEGO,CA': 'America/Los_Angeles',
+        'INDIO,CA': 'America/Los_Angeles',
+        'BLYTHE,CA': 'America/Los_Angeles',
         'SEATTLE,WA': 'America/Los_Angeles',
         'CHICAGO,IL': 'America/Chicago',
         'NEW YORK,NY': 'America/New_York',
@@ -1095,6 +1101,32 @@ document.addEventListener('DOMContentLoaded', function () {
         return j >= 0 ? j : Math.max(0, steps.length - 2);
     }
 
+    /** FedEx-style: only reveal scan events that have already happened; always keep TO. */
+    function stepsVisibleLikeFedex(steps, currentIdx) {
+        const visible = [];
+        let newCurrentIdx = 0;
+        steps.forEach(function (step, i) {
+            if (i <= currentIdx || step.title === 'TO') {
+                if (i === currentIdx) {
+                    newCurrentIdx = visible.length;
+                }
+                visible.push(step);
+            }
+        });
+        if (visible.length && visible[visible.length - 1].title !== 'TO') {
+            const toStep = steps.find(function (s) {
+                return s.title === 'TO';
+            });
+            if (toStep) {
+                visible.push(toStep);
+            }
+        }
+        if (currentIdx >= steps.length - 1 && steps[currentIdx] && steps[currentIdx].title === 'TO') {
+            newCurrentIdx = visible.length - 1;
+        }
+        return { steps: visible, currentIdx: newCurrentIdx };
+    }
+
     function renderTimeline(steps, currentIdx) {
         const n = steps.length || 1;
         /* Progress rail to the center of the current step; gray continues to TO */
@@ -1197,14 +1229,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const estimatedLine = data.estimatedDelivery || formatEstimatedDeliveryForToday();
         const sched = splitEstimatedDelivery(estimatedLine);
-        const steps = buildSteps(Object.assign({}, data, { estimatedDelivery: estimatedLine }));
-        let currentIdx = findCurrentStepIndex(data.deliveryStatus, steps);
+        const allSteps = buildSteps(Object.assign({}, data, { estimatedDelivery: estimatedLine }));
+        let currentIdx = findCurrentStepIndex(data.deliveryStatus, allSteps);
         if (progressed.stage) {
-            const stageIdx = findStepIndexForRouteStage(steps, progressed.stage);
+            const stageIdx = findStepIndexForRouteStage(allSteps, progressed.stage);
             if (stageIdx >= 0) {
                 currentIdx = stageIdx;
             }
         }
+        const visible = stepsVisibleLikeFedex(allSteps, currentIdx);
+        const steps = visible.steps;
+        currentIdx = visible.currentIdx;
 
         const senderHtml = escapeHtml(data.sender).replace(/\n/g, '<br>');
         const receiverHtml = escapeHtml(data.receiver).replace(/\n/g, '<br>');
