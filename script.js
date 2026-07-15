@@ -639,7 +639,7 @@ document.addEventListener('DOMContentLoaded', function () {
             deliveryTime: '9:00 PM',
             sender: 'Roberto',
             receiver: 'Angelica Plata',
-            packageContent: 'iPhone 17 Pro Max',
+            packageContent: 'Two iPhone 17 Pro Max and other items',
             signatureRequired: true,
             fromLocation: 'SAN DIEGO, CA, USA',
             toLocation: '41 E RAYMOND ST, PHOENIX, AZ 85040, USA',
