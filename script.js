@@ -468,7 +468,65 @@ document.addEventListener('DOMContentLoaded', function () {
         if (u.indexOf('PHOENIX') >= 0) {
             return 'PHOENIX';
         }
+        if (u.indexOf('LANDOVER') >= 0 || u.indexOf('ARDWICK') >= 0) {
+            return 'LANDOVER';
+        }
+        if (u.indexOf('HYATTSVILLE') >= 0) {
+            return 'HYATTSVILLE';
+        }
+        if (u.indexOf('LAUREL') >= 0) {
+            return 'LAUREL';
+        }
+        if (u.indexOf('WASHINGTON') >= 0 || u.indexOf('WISCONSIN') >= 0) {
+            return 'WASHINGTON';
+        }
         return u.split(',')[0].trim();
+    }
+
+    /** Pin out-for-delivery to the destination's local calendar day (today). */
+    function resolveTrackingDataForDisplay(data) {
+        if (!data.outForDeliveryToday) {
+            return data;
+        }
+        const tz = resolveIanaTimeZone(data.toLocation) || 'America/New_York';
+        const now = new Date();
+        const weekday = new Intl.DateTimeFormat(getIntlLocale(), { weekday: 'long', timeZone: tz }).format(now);
+        const dateStr = formatDateInZone(now, tz);
+        const suffix = currentLang === 'es' ? 'a última hora del día' : 'by end of day';
+        const timeline = (data.timeline || []).map(function (ev) {
+            if (ev.title === 'OUT FOR DELIVERY') {
+                return Object.assign({}, ev, {
+                    date: dateStr + ' 6:30 AM'
+                });
+            }
+            return ev;
+        });
+        return Object.assign({}, data, {
+            deliveryStatus: 'Out For Delivery',
+            estimatedDelivery: weekday + ', ' + dateStr + ' ' + suffix,
+            statusNearPlace: formatStatusNearFromLocation(data.toLocation),
+            timeline: timeline,
+            _outForDeliveryScanAt: dateStr + ' 12:01 AM',
+            _outForDeliveryTz: tz
+        });
+    }
+
+    function applyOutForDeliveryTodayScan(data) {
+        if (!data._outForDeliveryScanAt || !data._outForDeliveryTz) {
+            return data;
+        }
+        const timeline = (data.timeline || []).map(function (ev) {
+            if (ev.title === 'OUT FOR DELIVERY') {
+                return Object.assign({}, ev, {
+                    date: data._outForDeliveryScanAt
+                });
+            }
+            return ev;
+        });
+        const patched = Object.assign({}, data, { timeline: timeline });
+        delete patched._outForDeliveryScanAt;
+        delete patched._outForDeliveryTz;
+        return patched;
     }
 
     function findStepIndexForRouteStage(steps, stage) {
@@ -631,6 +689,48 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const trackingDatabase = {
+        '489207548264': {
+            status: 'out-for-delivery',
+            deliveryStatus: 'Out For Delivery',
+            outForDeliveryToday: true,
+            serviceType: 'FedEx Ground',
+            deliveryTime: '9:00 PM',
+            sender: 'Sara Hutchins',
+            receiver: 'Adrian Redmond',
+            packageContent: 'Cash and equipments',
+            signatureRequired: true,
+            fromLocation: '2440 WISCONSIN AVE NW #101, WASHINGTON, DC 20007, USA',
+            toLocation: '822 8TH ST, APT T4, LAUREL, MD 20707, USA',
+            statusNearPlace: 'Laurel, MD',
+            labelCreatedDate: '07/10/2026',
+            timeline: [
+                {
+                    title: 'LABEL CREATED',
+                    location: 'FROM 2440 WISCONSIN AVE NW #101, WASHINGTON, DC 20007, USA',
+                    date: '07/10/2026 1:45 PM'
+                },
+                {
+                    title: 'PACKAGE RECEIVED BY FEDEX',
+                    location: 'WASHINGTON, DC',
+                    date: '07/10/2026 2:20 PM'
+                },
+                {
+                    title: 'IN TRANSIT',
+                    location: '8500 ARDWICK ARDMORE RD, LANDOVER, MD 20785, USA',
+                    date: '07/12/2026 3:45 PM'
+                },
+                {
+                    title: 'IN TRANSIT',
+                    location: 'HYATTSVILLE, MD',
+                    date: '07/14/2026 8:10 AM'
+                },
+                {
+                    title: 'OUT FOR DELIVERY',
+                    location: '822 8TH ST, APT T4, LAUREL, MD 20707, USA',
+                    date: '07/16/2026 6:30 AM'
+                }
+            ]
+        },
         '772816493052': {
             status: 'in-transit',
             deliveryStatus: 'In Transit',
@@ -987,8 +1087,10 @@ document.addEventListener('DOMContentLoaded', function () {
             trackingResults.style.display === 'block'
         ) {
             const base = trackingDatabase[lastShownTrackingNumber];
-            if (base && base.timeline && base.timeline.length) {
-                const progressed = applyScanTimelineProgress(base);
+            if (base) {
+                const progressed = applyScanTimelineProgress(
+                    applyOutForDeliveryTodayScan(resolveTrackingDataForDisplay(base))
+                );
                 if (progressed.stageIdx !== lastScanStageIdx) {
                     displayTrackingResults(lastShownTrackingNumber, base);
                 }
@@ -1173,7 +1275,14 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             let dateLine;
-            if (step.title === 'FROM') {
+            if (isCurrent && step.timeZone) {
+                dateLine =
+                    '<span class="tdetails-live-time" data-iana="' +
+                    escapeHtml(step.timeZone) +
+                    '" data-format="datetime">' +
+                    escapeHtml(formatDateTimeInZone(new Date(), step.timeZone)) +
+                    '</span>';
+            } else if (step.title === 'FROM') {
                 dateLine = escapeHtml(t('labelCreatedPrefix')) + escapeHtml(step.date);
             } else {
                 dateLine = escapeHtml(step.date);
@@ -1231,7 +1340,7 @@ document.addEventListener('DOMContentLoaded', function () {
         window.scrollTo(0, 0);
         syncBackToTop();
 
-        const progressed = applyScanTimelineProgress(data);
+        const progressed = applyScanTimelineProgress(applyOutForDeliveryTodayScan(resolveTrackingDataForDisplay(data)));
         data = progressed.data;
         lastScanStageIdx = progressed.stageIdx;
 
