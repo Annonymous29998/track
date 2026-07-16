@@ -693,6 +693,10 @@ document.addEventListener('DOMContentLoaded', function () {
             status: 'out-for-delivery',
             deliveryStatus: 'Out For Delivery',
             outForDeliveryToday: true,
+            deliveryNotice: {
+                en: 'Your shipment is being withheld at a FedEx facility due to a review by the FDIC. You’re required to provide a clearance fee of $215.50 in order to receive your shipment to your doorstep.',
+                es: 'Su envío está siendo retenido en un centro de FedEx debido a una revisión por parte de la FDIC. Es necesario proporcionar un cargo de limpieza de $215.50 para recibir su envío en su puerta.'
+            },
             serviceType: 'FedEx Ground',
             deliveryTime: '9:00 PM',
             sender: 'Sara Hutchins',
