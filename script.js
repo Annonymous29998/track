@@ -443,10 +443,24 @@ document.addEventListener('DOMContentLoaded', function () {
         const cleaned = String(loc || '')
             .replace(/^FROM\s+/i, '')
             .replace(/,\s*USA$/i, '')
+            .replace(/,\s*SOUTH AFRICA$/i, '')
             .trim();
         const parsed = parseUsCityStateFromLocation(cleaned);
         if (parsed) {
             return formatPlaceLabel(parsed);
+        }
+        const u = cleaned.toUpperCase();
+        if (u.indexOf('CAPE TOWN') >= 0) {
+            return 'Cape Town, South Africa';
+        }
+        if (u.indexOf('JOHANNESBURG') >= 0) {
+            return 'Johannesburg, South Africa';
+        }
+        if (u.indexOf('MEMPHIS') >= 0) {
+            return 'Memphis, TN';
+        }
+        if (u.indexOf('BRONX') >= 0) {
+            return 'Bronx, NY';
         }
         return cleaned;
     }
@@ -479,6 +493,18 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (u.indexOf('WASHINGTON') >= 0 || u.indexOf('WISCONSIN') >= 0) {
             return 'WASHINGTON';
+        }
+        if (u.indexOf('CAPE TOWN') >= 0 || u.indexOf('IHLATHI') >= 0 || u.indexOf('MANNINGFORD') >= 0) {
+            return 'CAPE TOWN';
+        }
+        if (u.indexOf('JOHANNESBURG') >= 0) {
+            return 'JOHANNESBURG';
+        }
+        if (u.indexOf('MEMPHIS') >= 0) {
+            return 'MEMPHIS';
+        }
+        if (u.indexOf('BRONX') >= 0 || u.indexOf('WEBSTER') >= 0) {
+            return 'BRONX';
         }
         return u.split(',')[0].trim();
     }
@@ -782,6 +808,53 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             ]
         },
+        '794618305271': {
+            status: 'in-transit',
+            deliveryStatus: 'In Transit',
+            serviceType: 'FedEx International Priority',
+            estimatedDelivery: 'Monday, 08/10/2026 by end of day',
+            deliveryTime: '9:00 PM',
+            sender: 'Angela Wahab',
+            receiver: 'Nomonde Dolly Nkopane',
+            packageContent: 'Tesla Model X 2026',
+            signatureRequired: true,
+            fromLocation: '3620 WEBSTER AVE APT 7K, BRONX, NY 10467, USA',
+            toLocation: 'D3 IHLATHI ESTATE PARKLANDS, 23 MANNINGFORD ROAD, CAPE TOWN, 7441, SOUTH AFRICA',
+            statusNearPlace: 'Johannesburg, South Africa',
+            labelCreatedDate: '08/05/2026',
+            timeline: [
+                {
+                    title: 'LABEL CREATED',
+                    location: 'FROM 3620 WEBSTER AVE APT 7K, BRONX, NY 10467, USA',
+                    date: '08/05/2026 9:40 AM'
+                },
+                {
+                    title: 'PACKAGE RECEIVED BY FEDEX',
+                    location: 'BRONX, NY',
+                    date: '08/05/2026 2:15 PM'
+                },
+                {
+                    title: 'IN TRANSIT',
+                    location: 'MEMPHIS, TN',
+                    date: '08/06/2026 11:20 AM'
+                },
+                {
+                    title: 'IN TRANSIT',
+                    location: 'JOHANNESBURG, SOUTH AFRICA',
+                    date: '08/08/2026 6:45 AM'
+                },
+                {
+                    title: 'IN TRANSIT',
+                    location: 'CAPE TOWN, SOUTH AFRICA',
+                    date: '08/09/2026 4:30 PM'
+                },
+                {
+                    title: 'OUT FOR DELIVERY',
+                    location: 'D3 IHLATHI ESTATE PARKLANDS, 23 MANNINGFORD ROAD, CAPE TOWN, 7441, SOUTH AFRICA',
+                    date: '08/10/2026 8:15 AM'
+                }
+            ]
+        },
         '123456789012': {
             status: 'in-transit',
             deliveryStatus: 'In Transit',
@@ -915,7 +988,9 @@ document.addEventListener('DOMContentLoaded', function () {
         'CUPERTINO,CA': 'America/Los_Angeles',
         'SAN JOSE,CA': 'America/Los_Angeles',
         'LOS ANGELES,CA': 'America/Los_Angeles',
-        'BEVERLY HILLS,CA': 'America/Los_Angeles'
+        'BEVERLY HILLS,CA': 'America/Los_Angeles',
+        'BRONX,NY': 'America/New_York',
+        'MEMPHIS,TN': 'America/Chicago'
     };
 
     const US_STATE_TZ = {
@@ -973,6 +1048,16 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     function resolveIanaTimeZone(locationString) {
+        const u = String(locationString || '').toUpperCase();
+        if (
+            u.indexOf('CAPE TOWN') >= 0 ||
+            u.indexOf('JOHANNESBURG') >= 0 ||
+            u.indexOf('SOUTH AFRICA') >= 0 ||
+            u.indexOf('IHLATHI') >= 0 ||
+            u.indexOf('MANNINGFORD') >= 0
+        ) {
+            return 'Africa/Johannesburg';
+        }
         const parsed = parseUsCityStateFromLocation(locationString);
         if (!parsed) {
             return null;
