@@ -34,6 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
     };
 
     const DELIVERY_STATUS_ES = {
+        'Label Created': 'Etiqueta creada',
         'In Transit': 'En tránsito',
         Delivered: 'Entregado',
         'Out For Delivery': 'En reparto',
@@ -435,6 +436,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (title === 'DELIVERY EXCEPTION') {
             return 'Delivery Exception';
+        }
+        /* Before pickup: label only — not In Transit yet */
+        if (title === 'FROM' || title === 'LABEL CREATED') {
+            return 'Label Created';
         }
         return 'In Transit';
     }
@@ -868,8 +873,8 @@ document.addEventListener('DOMContentLoaded', function () {
             ]
         },
         '881204739516': {
-            status: 'in-transit',
-            deliveryStatus: 'In Transit',
+            status: 'label-created',
+            deliveryStatus: 'Label Created',
             serviceType: 'FedEx Ground',
             estimatedDelivery: 'Thursday, 08/13/2026 by end of day',
             deliveryTime: '9:00 PM',
@@ -1337,6 +1342,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
         const map = {
+            'Label Created': 'FROM',
             'In Transit': 'IN TRANSIT',
             'Out For Delivery': 'OUT FOR DELIVERY',
             'Delivery Exception': 'DELIVERY EXCEPTION'
