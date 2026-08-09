@@ -462,6 +462,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (u.indexOf('BRONX') >= 0) {
             return 'Bronx, NY';
         }
+        if (u.indexOf('AMITE') >= 0) {
+            return 'Amite, LA';
+        }
+        if (u.indexOf('NEW ORLEANS') >= 0) {
+            return 'New Orleans, LA';
+        }
         return cleaned;
     }
 
@@ -505,6 +511,12 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (u.indexOf('BRONX') >= 0 || u.indexOf('WEBSTER') >= 0) {
             return 'BRONX';
+        }
+        if (u.indexOf('AMITE') >= 0 || u.indexOf('HWY 16') >= 0) {
+            return 'AMITE';
+        }
+        if (u.indexOf('NEW ORLEANS') >= 0) {
+            return 'NEW ORLEANS';
         }
         return u.split(',')[0].trim();
     }
@@ -855,6 +867,48 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             ]
         },
+        '881204739516': {
+            status: 'in-transit',
+            deliveryStatus: 'In Transit',
+            serviceType: 'FedEx Ground',
+            estimatedDelivery: 'Thursday, 08/13/2026 by end of day',
+            deliveryTime: '9:00 PM',
+            sender: 'Human and Health Services Grant',
+            receiver: 'John Mooney',
+            packageContent: 'Grant package',
+            signatureRequired: true,
+            fromLocation: 'APT 7K, BRONX, NY 10467, USA',
+            toLocation: '10546 HWY 16 APT A, AMITE, LA 70422, USA',
+            statusNearPlace: 'Bronx, NY',
+            labelCreatedDate: '08/10/2026',
+            timeline: [
+                {
+                    title: 'LABEL CREATED',
+                    location: 'FROM APT 7K, BRONX, NY 10467, USA',
+                    date: '08/10/2026 9:15 AM'
+                },
+                {
+                    title: 'PACKAGE RECEIVED BY FEDEX',
+                    location: 'BRONX, NY',
+                    date: '08/10/2026 2:40 PM'
+                },
+                {
+                    title: 'IN TRANSIT',
+                    location: 'MEMPHIS, TN',
+                    date: '08/11/2026 10:05 AM'
+                },
+                {
+                    title: 'IN TRANSIT',
+                    location: 'NEW ORLEANS, LA',
+                    date: '08/12/2026 5:20 PM'
+                },
+                {
+                    title: 'OUT FOR DELIVERY',
+                    location: '10546 HWY 16 APT A, AMITE, LA 70422, USA',
+                    date: '08/13/2026 8:10 AM'
+                }
+            ]
+        },
         '123456789012': {
             status: 'in-transit',
             deliveryStatus: 'In Transit',
@@ -990,7 +1044,9 @@ document.addEventListener('DOMContentLoaded', function () {
         'LOS ANGELES,CA': 'America/Los_Angeles',
         'BEVERLY HILLS,CA': 'America/Los_Angeles',
         'BRONX,NY': 'America/New_York',
-        'MEMPHIS,TN': 'America/Chicago'
+        'MEMPHIS,TN': 'America/Chicago',
+        'AMITE,LA': 'America/Chicago',
+        'NEW ORLEANS,LA': 'America/Chicago'
     };
 
     const US_STATE_TZ = {
