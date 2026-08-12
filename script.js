@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
             sigRequired: 'Signature required',
             sigNotRequired: 'No signature required',
             onTime: 'ON TIME',
-            delayed: 'DELAYED',
+            delayed: 'ON HOLD',
             deliveryStatus: 'DELIVERY STATUS',
             trackingId: 'TRACKING ID',
             labelCreatedPrefix: 'Label created ',
@@ -219,7 +219,7 @@ document.addEventListener('DOMContentLoaded', function () {
             sigRequired: 'Se requiere firma',
             sigNotRequired: 'No se requiere firma',
             onTime: 'A TIEMPO',
-            delayed: 'RETRASADO',
+            delayed: 'EN ESPERA',
             deliveryStatus: 'ESTADO DE ENTREGA',
             trackingId: 'ID DE RASTREO',
             labelCreatedPrefix: 'Etiqueta creada el ',
@@ -873,18 +873,22 @@ document.addEventListener('DOMContentLoaded', function () {
             ]
         },
         '881204739516': {
-            status: 'label-created',
-            deliveryStatus: 'Label Created',
+            status: 'exception',
+            deliveryStatus: 'Delivery Exception',
+            deliveryNotice: {
+                en: 'Hold By Homeland Security Contact your Agent For More Information.',
+                es: 'Retenido por Homeland Security Contacte a su agente para más información.'
+            },
             serviceType: 'FedEx Ground',
             estimatedDelivery: 'Thursday, 08/13/2026 by end of day',
-            deliveryTime: '9:00 PM',
+            deliveryTime: 'Pending',
             sender: 'Human and Health Services Grant',
             receiver: 'John Mooney',
             packageContent: 'Grant package',
             signatureRequired: true,
             fromLocation: 'APT 7K, BRONX, NY 10467, USA',
             toLocation: '10546 HWY 16 APT A, AMITE, LA 70422, USA',
-            statusNearPlace: 'Bronx, NY',
+            statusNearPlace: 'New Orleans, LA',
             labelCreatedDate: '08/10/2026',
             timeline: [
                 {
@@ -905,12 +909,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 {
                     title: 'IN TRANSIT',
                     location: 'NEW ORLEANS, LA',
-                    date: '08/12/2026 5:20 PM'
+                    date: '08/12/2026 8:15 AM'
                 },
                 {
-                    title: 'OUT FOR DELIVERY',
-                    location: '10546 HWY 16 APT A, AMITE, LA 70422, USA',
-                    date: '08/13/2026 8:10 AM'
+                    title: 'DELIVERY EXCEPTION',
+                    location: 'NEW ORLEANS, LA',
+                    date: '08/12/2026 10:30 AM'
                 }
             ]
         },
