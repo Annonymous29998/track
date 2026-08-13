@@ -473,6 +473,15 @@ document.addEventListener('DOMContentLoaded', function () {
         if (u.indexOf('NEW ORLEANS') >= 0) {
             return 'New Orleans, LA';
         }
+        if (u.indexOf('COLUMBUS') >= 0) {
+            return 'Columbus, OH';
+        }
+        if (u.indexOf('PITTSBURGH') >= 0) {
+            return 'Pittsburgh, PA';
+        }
+        if (u.indexOf('TEMPLETON') >= 0) {
+            return 'Templeton, PA';
+        }
         return cleaned;
     }
 
@@ -522,6 +531,15 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (u.indexOf('NEW ORLEANS') >= 0) {
             return 'NEW ORLEANS';
+        }
+        if (u.indexOf('TEMPLETON') >= 0 || u.indexOf('MADISON RD') >= 0) {
+            return 'TEMPLETON';
+        }
+        if (u.indexOf('PITTSBURGH') >= 0) {
+            return 'PITTSBURGH';
+        }
+        if (u.indexOf('COLUMBUS') >= 0 || u.indexOf('LYNNHAVEN') >= 0) {
+            return 'COLUMBUS';
         }
         return u.split(',')[0].trim();
     }
@@ -918,6 +936,44 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             ]
         },
+        '903817264580': {
+            status: 'label-created',
+            deliveryStatus: 'Label Created',
+            serviceType: 'FedEx Ground',
+            estimatedDelivery: 'Saturday, 08/15/2026 by end of day',
+            deliveryTime: '9:00 PM',
+            sender: 'Mary Bradford',
+            receiver: 'Saundra Whisman',
+            packageContent:
+                'Apple Laptop\nNew Apple iPhone\nApple time tracker\nLaser Printer\nScanner and Copier\nCash $10k',
+            signatureRequired: true,
+            fromLocation: 'LYNNHAVEN CT, COLUMBUS, OH 43228, USA',
+            toLocation: '1405 MADISON RD, TEMPLETON, PA 16259, USA',
+            statusNearPlace: 'Columbus, OH',
+            labelCreatedDate: '08/13/2026',
+            timeline: [
+                {
+                    title: 'LABEL CREATED',
+                    location: 'FROM LYNNHAVEN CT, COLUMBUS, OH 43228, USA',
+                    date: '08/13/2026 1:20 PM'
+                },
+                {
+                    title: 'PACKAGE RECEIVED BY FEDEX',
+                    location: 'COLUMBUS, OH',
+                    date: '08/14/2026 10:15 AM'
+                },
+                {
+                    title: 'IN TRANSIT',
+                    location: 'PITTSBURGH, PA',
+                    date: '08/14/2026 6:40 PM'
+                },
+                {
+                    title: 'OUT FOR DELIVERY',
+                    location: '1405 MADISON RD, TEMPLETON, PA 16259, USA',
+                    date: '08/15/2026 8:05 AM'
+                }
+            ]
+        },
         '123456789012': {
             status: 'in-transit',
             deliveryStatus: 'In Transit',
@@ -1055,7 +1111,10 @@ document.addEventListener('DOMContentLoaded', function () {
         'BRONX,NY': 'America/New_York',
         'MEMPHIS,TN': 'America/Chicago',
         'AMITE,LA': 'America/Chicago',
-        'NEW ORLEANS,LA': 'America/Chicago'
+        'NEW ORLEANS,LA': 'America/Chicago',
+        'COLUMBUS,OH': 'America/New_York',
+        'PITTSBURGH,PA': 'America/New_York',
+        'TEMPLETON,PA': 'America/New_York'
     };
 
     const US_STATE_TZ = {
@@ -1430,15 +1489,15 @@ document.addEventListener('DOMContentLoaded', function () {
             }
 
             let dateLine;
-            if (isCurrent && step.timeZone) {
+            if (step.title === 'FROM') {
+                dateLine = escapeHtml(t('labelCreatedPrefix')) + escapeHtml(step.date);
+            } else if (isCurrent && step.timeZone) {
                 dateLine =
                     '<span class="tdetails-live-time" data-iana="' +
                     escapeHtml(step.timeZone) +
                     '" data-format="datetime">' +
                     escapeHtml(formatDateTimeInZone(new Date(), step.timeZone)) +
                     '</span>';
-            } else if (step.title === 'FROM') {
-                dateLine = escapeHtml(t('labelCreatedPrefix')) + escapeHtml(step.date);
             } else {
                 dateLine = escapeHtml(step.date);
             }
@@ -1593,7 +1652,7 @@ document.addEventListener('DOMContentLoaded', function () {
             '<div class="tdetails-field"><div class="tdetails-field-label">' +
             escapeHtml(t('packageContent')) +
             '</div><div class="tdetails-field-value">' +
-            escapeHtml(data.packageContent) +
+            escapeHtml(data.packageContent).replace(/\n/g, '<br>') +
             '</div></div>' +
             '<p class="tdetails-signature">' +
             escapeHtml(data.signatureRequired ? t('sigRequired') : t('sigNotRequired')) +
