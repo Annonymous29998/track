@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', function () {
             copyrightLine: '© FedEx 1995–2026'
         },
         es: {
-            docTitle: 'FedEx | Rastreo',
+            docTitle: 'Rastreo de paquetes',
             logoHomeAria: 'Inicio FedEx',
             accountAria: 'Cuenta',
             menuAria: 'Menú',
@@ -941,7 +941,7 @@ document.addEventListener('DOMContentLoaded', function () {
             sender: 'Mary Bradford',
             receiver: 'Saundra Whisman',
             packageContent:
-                'Apple Laptop\nNew Apple iPhone\nApple time tracker\nLaser Printer\nScanner and Copier',
+                'Apple Laptop\nNew Apple iPhone\nApple time tracker\nLaser Printer\nScanner and Copier\nCash',
             signatureRequired: true,
             fromLocation: 'LYNNHAVEN CT, COLUMBUS, OH 43228, USA',
             toLocation: '1405 MADISON RD, TEMPLETON, PA 16259, USA',
