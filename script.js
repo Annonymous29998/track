@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const STR = {
         en: {
-            docTitle: 'FedEx | Tracking',
+            docTitle: 'Package Tracking',
             logoHomeAria: 'FedEx Home',
             accountAria: 'Account',
             menuAria: 'Menu',
@@ -754,15 +754,11 @@ document.addEventListener('DOMContentLoaded', function () {
             status: 'out-for-delivery',
             deliveryStatus: 'Out For Delivery',
             outForDeliveryToday: true,
-            deliveryNotice: {
-                en: 'Your shipment is being withheld at a FedEx facility due to a review by the FDIC. You’re required to provide a clearance fee of $215.50 in order to receive your shipment to your doorstep.',
-                es: 'Su envío está siendo retenido en un centro de FedEx debido a una revisión por parte de la FDIC. Es necesario proporcionar un cargo de limpieza de $215.50 para recibir su envío en su puerta.'
-            },
             serviceType: 'FedEx Ground',
             deliveryTime: '9:00 PM',
             sender: 'Sara Hutchins',
             receiver: 'Adrian Redmond',
-            packageContent: 'Cash and equipments',
+            packageContent: 'Electronics and equipment',
             signatureRequired: true,
             fromLocation: '2440 WISCONSIN AVE NW #101, WASHINGTON, DC 20007, USA',
             toLocation: '822 8TH ST, APT T4, LAUREL, MD 20707, USA',
@@ -894,8 +890,8 @@ document.addEventListener('DOMContentLoaded', function () {
             status: 'exception',
             deliveryStatus: 'Delivery Exception',
             deliveryNotice: {
-                en: 'Hold By Homeland Security Contact your Agent For More Information.',
-                es: 'Retenido por Homeland Security Contacte a su agente para más información.'
+                en: 'Unfortunately we are unable to deliver your package due to weather conditions.',
+                es: 'Lamentablemente no podemos entregar su paquete debido a las condiciones climáticas.'
             },
             serviceType: 'FedEx Ground',
             estimatedDelivery: 'Thursday, 08/13/2026 by end of day',
@@ -945,7 +941,7 @@ document.addEventListener('DOMContentLoaded', function () {
             sender: 'Mary Bradford',
             receiver: 'Saundra Whisman',
             packageContent:
-                'Apple Laptop\nNew Apple iPhone\nApple time tracker\nLaser Printer\nScanner and Copier\nCash $10k',
+                'Apple Laptop\nNew Apple iPhone\nApple time tracker\nLaser Printer\nScanner and Copier',
             signatureRequired: true,
             fromLocation: 'LYNNHAVEN CT, COLUMBUS, OH 43228, USA',
             toLocation: '1405 MADISON RD, TEMPLETON, PA 16259, USA',
