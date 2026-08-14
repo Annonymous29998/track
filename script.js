@@ -937,8 +937,8 @@ document.addEventListener('DOMContentLoaded', function () {
             ]
         },
         '903817264580': {
-            status: 'label-created',
-            deliveryStatus: 'Label Created',
+            status: 'in-transit',
+            deliveryStatus: 'In Transit',
             serviceType: 'FedEx Ground',
             estimatedDelivery: 'Saturday, 08/15/2026 by end of day',
             deliveryTime: '9:00 PM',
@@ -949,7 +949,7 @@ document.addEventListener('DOMContentLoaded', function () {
             signatureRequired: true,
             fromLocation: 'LYNNHAVEN CT, COLUMBUS, OH 43228, USA',
             toLocation: '1405 MADISON RD, TEMPLETON, PA 16259, USA',
-            statusNearPlace: 'Columbus, OH',
+            statusNearPlace: 'Pittsburgh, PA',
             labelCreatedDate: '08/13/2026',
             timeline: [
                 {
@@ -960,12 +960,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 {
                     title: 'PACKAGE RECEIVED BY FEDEX',
                     location: 'COLUMBUS, OH',
-                    date: '08/14/2026 10:15 AM'
+                    date: '08/13/2026 6:00 PM'
                 },
                 {
                     title: 'IN TRANSIT',
                     location: 'PITTSBURGH, PA',
-                    date: '08/14/2026 6:40 PM'
+                    date: '08/13/2026 11:00 PM'
                 },
                 {
                     title: 'OUT FOR DELIVERY',
@@ -1491,7 +1491,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let dateLine;
             if (step.title === 'FROM') {
                 dateLine = escapeHtml(t('labelCreatedPrefix')) + escapeHtml(step.date);
-            } else if (isCurrent && step.timeZone) {
+            } else if (isCurrent && step.title === 'OUT FOR DELIVERY' && step.timeZone) {
                 dateLine =
                     '<span class="tdetails-live-time" data-iana="' +
                     escapeHtml(step.timeZone) +
