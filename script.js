@@ -677,9 +677,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     const LOADER_IMAGE_SRCS = [
-        'assets/loading-label.png',
-        'assets/loading-plane.png',
-        'assets/loading-logo.png'
+        'assets/loading-label.webp',
+        'assets/loading-label.jpg',
+        'assets/loading-plane.webp',
+        'assets/loading-plane.jpg',
+        'assets/loading-logo.webp',
+        'assets/loading-logo.jpg'
     ];
     let loaderImagesPrimed = false;
 
@@ -693,11 +696,17 @@ document.addEventListener('DOMContentLoaded', function () {
             im.src = src;
         });
         if (trackingLoader) {
-            trackingLoader.querySelectorAll('img[data-src]').forEach(function (img) {
-                const src = img.getAttribute('data-src');
-                if (src && !img.getAttribute('src')) {
-                    img.setAttribute('src', src);
-                }
+            trackingLoader.querySelectorAll('picture').forEach(function (picture) {
+                picture.querySelectorAll('[data-src], [data-srcset]').forEach(function (el) {
+                    const srcset = el.getAttribute('data-srcset');
+                    if (srcset && !el.getAttribute('srcset')) {
+                        el.setAttribute('srcset', srcset);
+                    }
+                    const src = el.getAttribute('data-src');
+                    if (src && !el.getAttribute('src')) {
+                        el.setAttribute('src', src);
+                    }
+                });
             });
         }
     }
