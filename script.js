@@ -942,11 +942,15 @@ document.addEventListener('DOMContentLoaded', function () {
             ]
         },
         '903817264580': {
-            status: 'in-transit',
-            deliveryStatus: 'In Transit',
+            status: 'exception',
+            deliveryStatus: 'Delivery Exception',
+            deliveryNotice: {
+                en: 'Unfortunately we are unable to deliver your package at this time. The shipment is currently on hold.',
+                es: 'Lamentablemente no podemos entregar su paquete en este momento. El envío está actualmente en espera.'
+            },
             serviceType: 'FedEx Ground',
             estimatedDelivery: 'Saturday, 08/15/2026 by end of day',
-            deliveryTime: '9:00 PM',
+            deliveryTime: 'Pending',
             sender: 'Mary Bradford',
             receiver: 'Saundra Whisman',
             packageContent:
@@ -973,9 +977,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     date: '08/13/2026 11:00 PM'
                 },
                 {
-                    title: 'OUT FOR DELIVERY',
-                    location: '1405 MADISON RD, TEMPLETON, PA 16259, USA',
-                    date: '08/15/2026 8:05 AM'
+                    title: 'DELIVERY EXCEPTION',
+                    location: 'PITTSBURGH, PA',
+                    date: '08/14/2026 2:15 PM'
                 }
             ]
         },
