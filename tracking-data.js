@@ -223,18 +223,22 @@ window.__FEDEX_TRACKING_DATA__ = {
     ]
   },
   "726481935602": {
-    "status": "in-transit",
-    "deliveryStatus": "In Transit",
+    "status": "exception",
+    "deliveryStatus": "Delivery Exception",
+    "deliveryNotice": {
+      "en": "Your shipment is currently on hold pending additional shipping-compliance review. The shipment requires further assessment before it can be released for delivery.",
+      "es": "Su envío está actualmente en espera pendiente de una revisión adicional de cumplimiento de envío. El envío requiere una evaluación adicional antes de poder ser liberado para entrega."
+    },
     "serviceType": "FedEx Ground",
     "estimatedDelivery": "Monday, 08/31/2026 by end of day",
-    "deliveryTime": "9:00 PM",
+    "deliveryTime": "Pending",
     "sender": "Catalogue of Federal Inheritance Revenue",
     "receiver": "Jimmy Chiang",
     "packageContent": "Inheritance Check and Paperworks",
     "signatureRequired": true,
     "fromLocation": "1200 N MAIN ST STE 400, DALLAS, TX 75202, USA",
     "toLocation": "202 STILLSON RD, FAIRFIELD, CT 06825, USA",
-    "statusNearPlace": "Columbus, OH",
+    "statusNearPlace": "Hartford, CT",
     "labelCreatedDate": "08/26/2026",
     "timeline": [
       {
@@ -263,9 +267,9 @@ window.__FEDEX_TRACKING_DATA__ = {
         "date": "08/30/2026 4:15 PM"
       },
       {
-        "title": "OUT FOR DELIVERY",
-        "location": "202 STILLSON RD, FAIRFIELD, CT 06825, USA",
-        "date": "08/31/2026 7:30 AM"
+        "title": "DELIVERY EXCEPTION",
+        "location": "HARTFORD, CT",
+        "date": "08/31/2026 11:30 AM"
       }
     ]
   },
