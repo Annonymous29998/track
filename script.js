@@ -494,6 +494,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (u.indexOf('HARTFORD') >= 0) {
             return 'Hartford, CT';
         }
+        if (u.indexOf('SPRINGFIELD') >= 0) {
+            return 'Springfield, MA';
+        }
         return cleaned;
     }
 
@@ -564,6 +567,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (u.indexOf('HARTFORD') >= 0) {
             return 'HARTFORD';
+        }
+        if (u.indexOf('SPRINGFIELD') >= 0) {
+            return 'SPRINGFIELD';
         }
         return u.split(',')[0].trim();
     }
@@ -923,7 +929,8 @@ document.addEventListener('DOMContentLoaded', function () {
         'PITTSBURGH,PA': 'America/New_York',
         'TEMPLETON,PA': 'America/New_York',
         'FAIRFIELD,CT': 'America/New_York',
-        'HARTFORD,CT': 'America/New_York'
+        'HARTFORD,CT': 'America/New_York',
+        'SPRINGFIELD,MA': 'America/New_York'
     };
 
     const US_STATE_TZ = {

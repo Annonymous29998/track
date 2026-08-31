@@ -238,7 +238,7 @@
     "signatureRequired": true,
     "fromLocation": "1200 N MAIN ST STE 400, DALLAS, TX 75202, USA",
     "toLocation": "202 STILLSON RD, FAIRFIELD, CT 06825, USA",
-    "statusNearPlace": "Hartford, CT",
+    "statusNearPlace": "Springfield, MA",
     "labelCreatedDate": "08/26/2026",
     "timeline": [
       {
@@ -263,12 +263,12 @@
       },
       {
         "title": "IN TRANSIT",
-        "location": "HARTFORD, CT",
+        "location": "SPRINGFIELD, MA",
         "date": "08/30/2026 4:15 PM"
       },
       {
         "title": "DELIVERY EXCEPTION",
-        "location": "HARTFORD, CT",
+        "location": "SPRINGFIELD, MA",
         "date": "08/31/2026 11:30 AM"
       }
     ]
