@@ -550,7 +550,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (u.indexOf('PITTSBURGH') >= 0) {
             return 'PITTSBURGH';
         }
-        if (u.indexOf('COLUMBUS') >= 0 || u.indexOf('LYNNHAVEN') >= 0 || u.indexOf('GEORGESVILLE') >= 0 || u.indexOf('WESTBELT') >= 0 || u.indexOf('MANOLA') >= 0) {
+        if (u.indexOf('COLUMBUS') >= 0 || u.indexOf('LYNNHAVEN') >= 0 || u.indexOf('GEORGESVILLE') >= 0 || u.indexOf('WESTBELT') >= 0 || u.indexOf('MANOLA') >= 0 || u.indexOf('INTERNATIONAL ST') >= 0 || u.indexOf('POTH') >= 0) {
             return 'COLUMBUS';
         }
         if (u.indexOf('CHICAGO') >= 0 || u.indexOf('DIVISION') >= 0) {
