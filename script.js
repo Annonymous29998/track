@@ -1355,6 +1355,16 @@ document.addEventListener('DOMContentLoaded', function () {
         return data.deliveryNotice[currentLang] || data.deliveryNotice.en || '';
     }
 
+    function getHoldMessage(data) {
+        if (!data.holdMessage) {
+            return getDeliveryNotice(data);
+        }
+        if (typeof data.holdMessage === 'string') {
+            return data.holdMessage;
+        }
+        return data.holdMessage[currentLang] || data.holdMessage.en || '';
+    }
+
     function displayTrackingResults(trackingNumber, data) {
         lastShownTrackingNumber = trackingNumber;
 
@@ -1378,7 +1388,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const onHold =
             progressed.stage && progressed.stage.stepTitle === 'DELIVERY EXCEPTION';
-        const deliveryNotice = onHold ? getDeliveryNotice(data) : '';
+        const deliveryNotice = onHold ? getHoldMessage(data) : '';
 
         const estimatedLine = data.estimatedDelivery || formatEstimatedDeliveryForToday();
         const sched = splitEstimatedDelivery(estimatedLine);

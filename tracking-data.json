@@ -387,7 +387,7 @@
   "628491073856": {
     "status": "in-transit",
     "deliveryStatus": "In Transit",
-    "deliveryNotice": {
+    "holdMessage": {
       "en": "Unfortunately we are unable to deliver your package at this time. The shipment is currently on hold.",
       "es": "Lamentablemente no podemos entregar su paquete en este momento. El envío está actualmente en espera."
     },
