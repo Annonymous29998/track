@@ -406,17 +406,17 @@ window.__FEDEX_TRACKING_DATA__ = {
       {
         "title": "LABEL CREATED",
         "location": "FROM WASHINGTON, DC 20201, USA",
-        "date": "09/02/2026 9:45 AM"
+        "date": "09/02/2026 8:30 AM"
       },
       {
         "title": "PACKAGE RECEIVED BY FEDEX",
         "location": "8500 ARDWICK ARDMORE RD, LANDOVER, MD 20785, USA",
-        "date": "09/02/2026 4:30 PM"
+        "date": "09/02/2026 11:15 AM"
       },
       {
         "title": "IN TRANSIT",
         "location": "8500 ARDWICK ARDMORE RD, LANDOVER, MD 20785, USA",
-        "date": "09/02/2026 5:45 PM"
+        "date": "09/02/2026 2:00 PM"
       },
       {
         "title": "IN TRANSIT",
