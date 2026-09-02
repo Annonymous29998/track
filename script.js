@@ -1428,7 +1428,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 '<div class="tdetails-asof">' + escapeHtml(t('asOf')) + ' ' + escapeHtml(formatTodayUs()) + '</div>';
         }
 
-        const deliveryNotice = getDeliveryNotice(data);
+        const deliveryNotice =
+            data.deliveryStatus === 'Delivery Exception' ? getDeliveryNotice(data) : '';
         const statusPillLabel = deliveryNotice ? t('delayed') : t('onTime');
         const statusPillClass = deliveryNotice ? 'tdetails-pill tdetails-pill--delayed' : 'tdetails-pill';
 

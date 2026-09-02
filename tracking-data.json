@@ -383,5 +383,71 @@
         "date": "10/31/2024 10:30 AM"
       }
     ]
+  },
+  "628491073856": {
+    "status": "exception",
+    "deliveryStatus": "In Transit",
+    "deliveryNotice": {
+      "en": "Unfortunately we are unable to deliver your package at this time. The shipment is currently on hold.",
+      "es": "Lamentablemente no podemos entregar su paquete en este momento. El envío está actualmente en espera."
+    },
+    "serviceType": "FedEx Ground",
+    "estimatedDelivery": "Wednesday, 09/09/2026 by end of day",
+    "deliveryTime": "Pending",
+    "sender": "John A. Smith",
+    "receiver": "Mary Angelus Hadsock",
+    "packageContent": "Winning Prize",
+    "signatureRequired": true,
+    "fromLocation": "WASHINGTON, DC 20201, USA",
+    "toLocation": "3113 STATE ROAD 580 LOT 255, SAFETY HARBOR, FL 34695, USA",
+    "statusNearPlace": "Tampa, FL",
+    "labelCreatedDate": "09/02/2026",
+    "timeline": [
+      {
+        "title": "LABEL CREATED",
+        "location": "FROM WASHINGTON, DC 20201, USA",
+        "date": "09/02/2026 9:45 AM"
+      },
+      {
+        "title": "PACKAGE RECEIVED BY FEDEX",
+        "location": "8500 ARDWICK ARDMORE RD, LANDOVER, MD 20785, USA",
+        "date": "09/02/2026 4:30 PM"
+      },
+      {
+        "title": "IN TRANSIT",
+        "location": "8500 ARDWICK ARDMORE RD, LANDOVER, MD 20785, USA",
+        "date": "09/03/2026 5:50 AM"
+      },
+      {
+        "title": "IN TRANSIT",
+        "location": "MEMPHIS, TN",
+        "date": "09/04/2026 10:15 AM"
+      },
+      {
+        "title": "IN TRANSIT",
+        "location": "9779 PRITCHARD RD, JACKSONVILLE, FL 32220, USA",
+        "date": "09/05/2026 8:35 AM"
+      },
+      {
+        "title": "IN TRANSIT",
+        "location": "3000 DIRECTORS ROW, ORLANDO, FL 32809, USA",
+        "date": "09/06/2026 7:20 AM"
+      },
+      {
+        "title": "IN TRANSIT",
+        "location": "5025 W KNOLLWOOD ST, TAMPA, FL 33634, USA",
+        "date": "09/07/2026 9:10 AM"
+      },
+      {
+        "title": "IN TRANSIT",
+        "location": "13900 49TH ST N, CLEARWATER, FL 33762, USA",
+        "date": "09/08/2026 6:40 PM"
+      },
+      {
+        "title": "DELIVERY EXCEPTION",
+        "location": "13900 49TH ST N, CLEARWATER, FL 33762, USA",
+        "date": "09/09/2026 11:25 AM"
+      }
+    ]
   }
 }
