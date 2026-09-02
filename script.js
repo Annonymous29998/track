@@ -1376,6 +1376,10 @@ document.addEventListener('DOMContentLoaded', function () {
         data = progressed.data;
         lastScanStageIdx = progressed.stageIdx;
 
+        const onHold =
+            progressed.stage && progressed.stage.stepTitle === 'DELIVERY EXCEPTION';
+        const deliveryNotice = onHold ? getDeliveryNotice(data) : '';
+
         const estimatedLine = data.estimatedDelivery || formatEstimatedDeliveryForToday();
         const sched = splitEstimatedDelivery(estimatedLine);
         const allSteps = buildSteps(Object.assign({}, data, { estimatedDelivery: estimatedLine }));
@@ -1428,8 +1432,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 '<div class="tdetails-asof">' + escapeHtml(t('asOf')) + ' ' + escapeHtml(formatTodayUs()) + '</div>';
         }
 
-        const deliveryNotice =
-            data.deliveryStatus === 'Delivery Exception' ? getDeliveryNotice(data) : '';
         const statusPillLabel = deliveryNotice ? t('delayed') : t('onTime');
         const statusPillClass = deliveryNotice ? 'tdetails-pill tdetails-pill--delayed' : 'tdetails-pill';
 
@@ -1448,7 +1450,7 @@ document.addEventListener('DOMContentLoaded', function () {
             '<div class="tdetails-est-window">' +
             (data.deliveryStatus === 'Delivered'
                 ? escapeHtml(data.deliveryTime)
-                : data.deliveryTime === 'Pending'
+                : onHold
                   ? escapeHtml(t('deliveryPending'))
                   : data.deliveryTime.indexOf('-') === -1
                     ? escapeHtml(t('deliveryBy')) + ' ' + escapeHtml(data.deliveryTime)

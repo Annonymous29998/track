@@ -385,7 +385,7 @@
     ]
   },
   "628491073856": {
-    "status": "exception",
+    "status": "in-transit",
     "deliveryStatus": "In Transit",
     "deliveryNotice": {
       "en": "Unfortunately we are unable to deliver your package at this time. The shipment is currently on hold.",
@@ -393,7 +393,7 @@
     },
     "serviceType": "FedEx Ground",
     "estimatedDelivery": "Wednesday, 09/09/2026 by end of day",
-    "deliveryTime": "Pending",
+    "deliveryTime": "9:00 PM",
     "sender": "John A. Smith",
     "receiver": "Mary Angelus Hadsock",
     "packageContent": "Winning Prize",
@@ -412,6 +412,11 @@
         "title": "PACKAGE RECEIVED BY FEDEX",
         "location": "8500 ARDWICK ARDMORE RD, LANDOVER, MD 20785, USA",
         "date": "09/02/2026 4:30 PM"
+      },
+      {
+        "title": "IN TRANSIT",
+        "location": "8500 ARDWICK ARDMORE RD, LANDOVER, MD 20785, USA",
+        "date": "09/02/2026 5:45 PM"
       },
       {
         "title": "IN TRANSIT",
