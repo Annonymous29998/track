@@ -6,7 +6,7 @@
     --text-muted: #666666;
     --link-blue: #007AB7;
     --border: #cccccc;
-    --btn-gray: #e5e5e5;
+    --btn-gray: #cfcfcf;
     --footer-bg: #f7f7f7;
     --shell-max: 480px;
 }
@@ -104,7 +104,30 @@ body {
 .m-header-actions {
     display: flex;
     align-items: center;
-    gap: 2px;
+    gap: 4px;
+    margin-left: auto;
+}
+
+.m-signin {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    white-space: nowrap;
+    padding: 4px 2px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.m-signin svg {
+    flex-shrink: 0;
+    display: block;
+}
+
+.m-signin:active {
+    opacity: 0.85;
 }
 
 .m-icon-btn {
@@ -122,6 +145,14 @@ body {
 
 .m-icon-btn:active {
     opacity: 0.85;
+}
+
+@media (max-width: 360px) {
+    .m-signin span {
+        max-width: 7.5rem;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }
 
 /* Main */
@@ -407,31 +438,46 @@ body.is-fx-results {
     border-radius: 2px;
 }
 
+/* FOLLOW FEDEX + icons on one row (match tracking results footer) */
+.m-footer-follow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 12px;
+    margin: 28px 0 28px;
+}
+
+.m-footer-web-title--follow {
+    margin: 0;
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
 .m-footer-social-row {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 28px;
+    gap: 8px;
+    margin: 0;
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 .m-footer-social {
-    width: 40px;
-    height: 40px;
-    border: 2px solid #222;
+    width: 34px;
+    height: 34px;
+    border: 1.5px solid #555;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: grid;
+    place-items: center;
     text-decoration: none;
-    color: #222;
-    font-size: 0.75rem;
-    font-weight: 600;
+    color: #333;
+    flex-shrink: 0;
+    padding: 0;
 }
 
-.m-footer-social--more {
-    border-style: dashed;
-    cursor: default;
+.m-footer-social svg {
+    display: block;
 }
 
 .m-footer-web .m-footer-legal {

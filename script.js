@@ -120,6 +120,8 @@ document.addEventListener('DOMContentLoaded', function () {
             socialX: 'X',
             socialInstagram: 'Instagram',
             socialLinkedIn: 'LinkedIn',
+            socialYouTube: 'YouTube',
+            socialPinterest: 'Pinterest',
             legalSitemap: 'Site Map',
             legalCookies: 'Cookie Consent',
             legalTerms: 'Terms of Use',
@@ -272,6 +274,8 @@ document.addEventListener('DOMContentLoaded', function () {
             socialX: 'X',
             socialInstagram: 'Instagram',
             socialLinkedIn: 'LinkedIn',
+            socialYouTube: 'YouTube',
+            socialPinterest: 'Pinterest',
             legalSitemap: 'Mapa del sitio',
             legalCookies: 'Consentimiento de cookies',
             legalTerms: 'Términos de uso',
@@ -1746,11 +1750,20 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    function bindInertFxFooterLinks(root) {
+        const scope = root || document;
+        scope.querySelectorAll('.fx-footer a, .fx-legal a, .fx-social a').forEach(function (a) {
+            a.setAttribute('href', 'javascript:void(0)');
+            a.setAttribute('tabindex', '0');
+        });
+    }
+
     function renderFxFooter(targetId, withStatusClass) {
         const el = document.getElementById(targetId);
         if (!el) {
             return;
         }
+        const inert = 'javascript:void(0)';
         const footerClass = withStatusClass ? 'fx-footer fx-footer--status' : 'fx-footer';
         el.innerHTML =
             '<footer class="' +
@@ -1759,58 +1772,90 @@ document.addEventListener('DOMContentLoaded', function () {
             '<h3 class="fx-footer-h">' +
             escapeHtml(t('footerOurCompany')) +
             '</h3>' +
-            '<a href="#">' +
+            '<a href="' +
+            inert +
+            '">' +
             escapeHtml(t('footerAbout')) +
             '</a>' +
-            '<a href="#">' +
+            '<a href="' +
+            inert +
+            '">' +
             escapeHtml(t('footerPortfolio')) +
             '</a>' +
-            '<a href="#">' +
+            '<a href="' +
+            inert +
+            '">' +
             escapeHtml(t('footerInvestor')) +
             '</a>' +
-            '<a href="#">' +
+            '<a href="' +
+            inert +
+            '">' +
             escapeHtml(t('footerCareers')) +
             '</a>' +
-            '<a href="#">' +
+            '<a href="' +
+            inert +
+            '">' +
             escapeHtml(t('footerContracting')) +
             '</a>' +
-            '<a href="#">' +
+            '<a href="' +
+            inert +
+            '">' +
             escapeHtml(t('footerBlog')) +
             '</a>' +
-            '<a href="#">' +
+            '<a href="' +
+            inert +
+            '">' +
             escapeHtml(t('footerResponsibility')) +
             '</a>' +
-            '<a href="#">' +
+            '<a href="' +
+            inert +
+            '">' +
             escapeHtml(t('footerNewsroom')) +
             '</a>' +
-            '<a href="#">' +
+            '<a href="' +
+            inert +
+            '">' +
             escapeHtml(t('footerContact')) +
             '</a>' +
             '<h3 class="fx-footer-h">' +
             escapeHtml(t('footerMoreFrom')) +
             '</h3>' +
-            '<a href="#">' +
+            '<a href="' +
+            inert +
+            '">' +
             escapeHtml(t('footerCompatible')) +
             '</a>' +
-            '<a href="#">' +
+            '<a href="' +
+            inert +
+            '">' +
             escapeHtml(t('footerDeveloper')) +
             '</a>' +
-            '<a href="#">' +
+            '<a href="' +
+            inert +
+            '">' +
             escapeHtml(t('footerLogistics')) +
             '</a>' +
             '<h3 class="fx-footer-h">' +
             escapeHtml(t('footerPolicy')) +
             '</h3>' +
-            '<a href="#">' +
+            '<a href="' +
+            inert +
+            '">' +
             escapeHtml(t('footerTerms')) +
             '</a>' +
-            '<a href="#">' +
+            '<a href="' +
+            inert +
+            '">' +
             escapeHtml(t('footerPrivacySecurity')) +
             '</a>' +
-            '<a href="#" class="fx-footer-link-underline">' +
+            '<a href="' +
+            inert +
+            '" class="fx-footer-link-underline">' +
             escapeHtml(t('footerAdChoices')) +
             '</a>' +
-            '<a href="#">' +
+            '<a href="' +
+            inert +
+            '">' +
             escapeHtml(t('footerPrivacyChoices')) +
             '</a>' +
             '<div class="fx-region">' +
@@ -1820,17 +1865,33 @@ document.addEventListener('DOMContentLoaded', function () {
             '</svg>' +
             escapeHtml(t('localeUS')) +
             '</div>' +
+            '<div class="fx-follow">' +
             '<h3 class="fx-footer-h">' +
             escapeHtml(t('footerFollow')) +
             '</h3>' +
             '<div class="fx-social" aria-label="Social links">' +
-            '<a href="#" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 7 9-7"/></svg></a>' +
-            '<a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z"/></svg></a>' +
-            '<a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 3H21l-6.6 7.5L22 21h-6.2l-4.9-6.4L5.4 21H2.6l7-8L2 3h6.3l4.4 5.8L18.2 3zm-1.1 16.2h1.7L7 4.7H5.2l11.9 14.5z"/></svg></a>' +
-            '<a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>' +
-            '<a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 9H3.7v11h2.8V9zM5.1 3.5A1.7 1.7 0 1 0 5.1 7a1.7 1.7 0 0 0 0-3.5zM20.3 20h-2.8v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H10.8V9h2.7v1.5h.1c.4-.7 1.3-1.8 3.1-1.8 3.3 0 3.9 2.2 3.9 5V20z"/></svg></a>' +
-            '<a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12.2s0-3.4-.4-5c-.2-.9-.9-1.6-1.8-1.8C18.7 5 12 5 12 5s-6.7 0-8.8.4C2.3 5.6 1.6 6.3 1.4 7.2 1 8.8 1 12.2 1 12.2s0 3.4.4 5c.2.9.9 1.6 1.8 1.8C5.3 19.4 12 19.4 12 19.4s6.7 0 8.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-5 .4-5zM9.8 15.5v-6.6l6.2 3.3-6.2 3.3z"/></svg></a>' +
-            '<a href="#" aria-label="Pinterest"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.1 2.5 7.6 6.1 9.1-.1-.8-.2-2 0-2.9.2-.8 1.3-5.4 1.3-5.4s-.3-.7-.3-1.6c0-1.5.9-2.6 2-2.6.9 0 1.4.7 1.4 1.5 0 .9-.6 2.3-.9 3.5-.3 1.1.5 1.9 1.6 1.9 1.9 0 3.2-2.4 3.2-5.3 0-2.2-1.5-3.8-4.2-3.8-3.1 0-5 2.3-5 4.8 0 .9.3 1.5.7 2 .2.1.2.2.1.5l-.3 1c-.1.2-.2.3-.4.2-1.5-.6-2.2-2.3-2.2-4.2 0-3.1 2.6-6.9 7.8-6.9 4.2 0 6.9 3 6.9 6.3 0 4.3-2.4 7.5-5.9 7.5-1.2 0-2.3-.6-2.7-1.4l-.7 2.8c-.3 1-1 2.2-1.5 3C10.1 21.9 11 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg></a>' +
+            '<a href="' +
+            inert +
+            '" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 7 9-7"/></svg></a>' +
+            '<a href="' +
+            inert +
+            '" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z"/></svg></a>' +
+            '<a href="' +
+            inert +
+            '" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 3H21l-6.6 7.5L22 21h-6.2l-4.9-6.4L5.4 21H2.6l7-8L2 3h6.3l4.4 5.8L18.2 3zm-1.1 16.2h1.7L7 4.7H5.2l11.9 14.5z"/></svg></a>' +
+            '<a href="' +
+            inert +
+            '" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>' +
+            '<a href="' +
+            inert +
+            '" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 9H3.7v11h2.8V9zM5.1 3.5A1.7 1.7 0 1 0 5.1 7a1.7 1.7 0 0 0 0-3.5zM20.3 20h-2.8v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H10.8V9h2.7v1.5h.1c.4-.7 1.3-1.8 3.1-1.8 3.3 0 3.9 2.2 3.9 5V20z"/></svg></a>' +
+            '<a href="' +
+            inert +
+            '" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12.2s0-3.4-.4-5c-.2-.9-.9-1.6-1.8-1.8C18.7 5 12 5 12 5s-6.7 0-8.8.4C2.3 5.6 1.6 6.3 1.4 7.2 1 8.8 1 12.2 1 12.2s0 3.4.4 5c.2.9.9 1.6 1.8 1.8C5.3 19.4 12 19.4 12 19.4s6.7 0 8.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-5 .4-5zM9.8 15.5v-6.6l6.2 3.3-6.2 3.3z"/></svg></a>' +
+            '<a href="' +
+            inert +
+            '" aria-label="Pinterest"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.1 2.5 7.6 6.1 9.1-.1-.8-.2-2 0-2.9.2-.8 1.3-5.4 1.3-5.4s-.3-.7-.3-1.6c0-1.5.9-2.6 2-2.6.9 0 1.4.7 1.4 1.5 0 .9-.6 2.3-.9 3.5-.3 1.1.5 1.9 1.6 1.9 1.9 0 3.2-2.4 3.2-5.3 0-2.2-1.5-3.8-4.2-3.8-3.1 0-5 2.3-5 4.8 0 .9.3 1.5.7 2 .2.1.2.2.1.5l-.3 1c-.1.2-.2.3-.4.2-1.5-.6-2.2-2.3-2.2-4.2 0-3.1 2.6-6.9 7.8-6.9 4.2 0 6.9 3 6.9 6.3 0 4.3-2.4 7.5-5.9 7.5-1.2 0-2.3-.6-2.7-1.4l-.7 2.8c-.3 1-1 2.2-1.5 3C10.1 21.9 11 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg></a>' +
+            '</div>' +
             '</div>' +
             '</footer>' +
             '<div class="fx-legal">' +
@@ -1838,17 +1899,24 @@ document.addEventListener('DOMContentLoaded', function () {
             escapeHtml(t('copyrightLine')) +
             '</div>' +
             '<div class="fx-legal-links">' +
-            '<a href="#">' +
+            '<a href="' +
+            inert +
+            '">' +
             escapeHtml(t('footerSitemap')) +
             '</a> | ' +
-            '<a href="#">' +
+            '<a href="' +
+            inert +
+            '">' +
             escapeHtml(t('footerCookieConsent')) +
             '</a> | ' +
-            '<a href="#">' +
+            '<a href="' +
+            inert +
+            '">' +
             escapeHtml(t('footerCookieConsent')) +
             '</a>' +
             '</div>' +
             '</div>';
+        bindInertFxFooterLinks(el);
     }
 
     function renderTravelHistory(timeline, currentStageIdx) {
@@ -2056,6 +2124,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         renderFxFooter('fxFooterStatus', true);
         renderFxFooter('fxFooterDetails', false);
+        bindInertFxFooterLinks();
 
         if (preferredView === 'details') {
             showFxDetailsView();
@@ -2084,6 +2153,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (trackButton) {
         trackButton.addEventListener('click', handleTracking);
+    }
+
+    if (trackingResults) {
+        trackingResults.addEventListener('click', function (e) {
+            const a = e.target.closest('.fx-footer a, .fx-legal a, .fx-social a');
+            if (!a || !trackingResults.contains(a)) {
+                return;
+            }
+            e.preventDefault();
+            e.stopPropagation();
+        });
     }
 
     syncTrackButtonState();
@@ -2117,10 +2197,20 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    document.querySelectorAll('.fx-btn-primary, .fx-signin, .fx-menu').forEach(function (el) {
+    document.querySelectorAll('.fx-btn-primary, .fx-signin, .fx-menu, .m-signin, #accountBtn, #menuToggle').forEach(function (el) {
         el.addEventListener('click', function (e) {
             e.preventDefault();
         });
+    });
+
+    document.addEventListener('click', function (e) {
+        const a = e.target.closest(
+            '.m-footer-web a, .m-footer-social, .m-legal-links a, .m-help-link, .m-btn-pill-outline, .m-link-caps'
+        );
+        if (!a) {
+            return;
+        }
+        e.preventDefault();
     });
 
     const backToStatusBtn = document.getElementById('backToStatus');
