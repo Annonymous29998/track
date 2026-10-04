@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Tracking Mock — Review Only</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="mock-tracking.css?v=2026100413">
+</head>
+<body class="fx-mock-page">
+    <div class="fx-banner">DESIGN MOCK — preview only · not connected to live tracking</div>
+
+    <div class="fx-shell" id="shell" data-view="status">
+        <header class="fx-header">
+            <a class="fx-logo" href="#" aria-label="FedEx home">
+                <span class="fx-logo-fed">Fed</span><span class="fx-logo-ex">Ex</span>
+            </a>
+            <div class="fx-header-actions">
+                <a class="fx-signin" href="#">
+                    <span>Sign Up or Log In</span>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="9" r="3.2"/>
+                        <path d="M6.5 18.2c1.6-2.2 3.5-3.2 5.5-3.2s3.9 1 5.5 3.2"/>
+                    </svg>
+                </a>
+                <button type="button" class="fx-menu" aria-label="Open menu">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M4 7h16M4 12h16M4 17h16"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- SCREEN 1: after user tracks a number -->
+        <div class="fx-view fx-view--status" id="viewStatus">
+            <section class="fx-hero" aria-label="Shipment status">
+                <div class="fx-track-id">
+                    <span id="fxTrackId">#876685541999</span>
+                    <button type="button" id="fxCopyTrack" aria-label="Copy tracking number">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <rect x="9" y="9" width="11" height="11" rx="1.5"/>
+                            <path d="M5 15V5a1.5 1.5 0 0 1 1.5-1.5H15"/>
+                        </svg>
+                    </button>
+                </div>
+                <p class="fx-hero-msg">Your package is still on the way and we're actively working to get you a new delivery date.</p>
+                <p class="fx-hero-loc">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/>
+                    </svg>
+                    Currently in Memphis, TN
+                </p>
+            </section>
+
+            <div class="fx-card-wrap">
+                <div class="fx-card">
+                    <div class="fx-route">
+                        <span>Jacksonville, FL US</span>
+                        <span>Lutz, FL US</span>
+                    </div>
+                    <div class="fx-progress" role="img" aria-label="Shipment progress about 40 percent" style="--progress: 42%">
+                        <div class="fx-progress-track" aria-hidden="true"></div>
+                        <div class="fx-progress-arrow" aria-hidden="true">
+                            <span class="fx-progress-shaft"></span>
+                            <svg class="fx-progress-tip" viewBox="0 0 18 26" preserveAspectRatio="none" focusable="false" aria-hidden="true">
+                                <polygon points="0,0 18,13 0,26" fill="currentColor"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <h2 class="fx-status">Delivery updated</h2>
+                    <a class="fx-details-link" href="#details" data-open-details>View more details</a>
+                    <a class="fx-btn fx-btn-primary" href="#">Manage delivery</a>
+                    <a class="fx-btn fx-btn-secondary" href="#details" data-open-details>Get status updates</a>
+                </div>
+            </div>
+
+            <section class="fx-promo fx-promo--status" aria-label="FedEx Delivery Manager">
+                <img src="delivery-manager.jpg" alt="Take more control of your delivery with FedEx Delivery Manager. Sign up for free." width="1024" height="531" loading="lazy">
+            </section>
+
+            <footer class="fx-footer fx-footer--status">
+                <h3 class="fx-footer-h">Our company</h3>
+                <a href="#">About FedEx</a>
+                <a href="#">Our Portfolio</a>
+                <a href="#">Investor Relations</a>
+                <a href="#">Careers</a>
+                <a href="#">Transportation Contracting Opportunities</a>
+                <a href="#">FedEx Blog</a>
+                <a href="#">Corporate Responsibility</a>
+                <a href="#">Newsroom</a>
+                <a href="#">Contact Us</a>
+
+                <h3 class="fx-footer-h">More from FedEx</h3>
+                <a href="#">FedEx Compatible</a>
+                <a href="#">FedEx Developer Portal</a>
+                <a href="#">FedEx Logistics</a>
+
+                <h3 class="fx-footer-h">Policy center</h3>
+                <a href="#">Terms of Use</a>
+                <a href="#">Privacy &amp; Security</a>
+                <a href="#" class="fx-footer-link-underline">Ad Choices</a>
+                <a href="#">Your Privacy Choices</a>
+                <div class="fx-region">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"/>
+                        <path d="M3 12h18M12 3c2.8 2.8 4.2 6 4.2 9s-1.4 6.2-4.2 9c-2.8-2.8-4.2-6-4.2-9s1.4-6.2 4.2-9z"/>
+                    </svg>
+                    United States
+                </div>
+
+                <h3 class="fx-footer-h">Follow FedEx</h3>
+                <div class="fx-social" aria-label="Social links">
+                    <a href="#" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 7 9-7"/></svg></a>
+                    <a href="#" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z"/></svg></a>
+                    <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 3H21l-6.6 7.5L22 21h-6.2l-4.9-6.4L5.4 21H2.6l7-8L2 3h6.3l4.4 5.8L18.2 3zm-1.1 16.2h1.7L7 4.7H5.2l11.9 14.5z"/></svg></a>
+                    <a href="#" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+                    <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 9H3.7v11h2.8V9zM5.1 3.5A1.7 1.7 0 1 0 5.1 7a1.7 1.7 0 0 0 0-3.5zM20.3 20h-2.8v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H10.8V9h2.7v1.5h.1c.4-.7 1.3-1.8 3.1-1.8 3.3 0 3.9 2.2 3.9 5V20z"/></svg></a>
+                    <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12.2s0-3.4-.4-5c-.2-.9-.9-1.6-1.8-1.8C18.7 5 12 5 12 5s-6.7 0-8.8.4C2.3 5.6 1.6 6.3 1.4 7.2 1 8.8 1 12.2 1 12.2s0 3.4.4 5c.2.9.9 1.6 1.8 1.8C5.3 19.4 12 19.4 12 19.4s6.7 0 8.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-5 .4-5zM9.8 15.5v-6.6l6.2 3.3-6.2 3.3z"/></svg></a>
+                    <a href="#" aria-label="Pinterest"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.1 2.5 7.6 6.1 9.1-.1-.8-.2-2 0-2.9.2-.8 1.3-5.4 1.3-5.4s-.3-.7-.3-1.6c0-1.5.9-2.6 2-2.6.9 0 1.4.7 1.4 1.5 0 .9-.6 2.3-.9 3.5-.3 1.1.5 1.9 1.6 1.9 1.9 0 3.2-2.4 3.2-5.3 0-2.2-1.5-3.8-4.2-3.8-3.1 0-5 2.3-5 4.8 0 .9.3 1.5.7 2 .2.1.2.2.1.5l-.3 1c-.1.2-.2.3-.4.2-1.5-.6-2.2-2.3-2.2-4.2 0-3.1 2.6-6.9 7.8-6.9 4.2 0 6.9 3 6.9 6.3 0 4.3-2.4 7.5-5.9 7.5-1.2 0-2.3-.6-2.7-1.4l-.7 2.8c-.3 1-1 2.2-1.5 3C10.1 21.9 11 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg></a>
+                </div>
+            </footer>
+
+            <div class="fx-legal">
+                <div>© FedEx 1995-2026</div>
+                <div class="fx-legal-links">
+                    <a href="#">Site Map</a> |
+                    <a href="#">Cookie Consent</a> |
+                    <a href="#">Cookie Consent</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCREEN 2: after View more details / Get status updates -->
+        <div class="fx-view fx-view--details" id="viewDetails" hidden>
+            <div class="fx-subnav" aria-label="Tracking details toolbar">
+                <button type="button" class="fx-subnav-back" id="backToStatus" aria-label="Back">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M15 18l-6-6 6-6"/>
+                    </svg>
+                </button>
+                <a class="fx-subnav-id" href="#" id="fxSubnavId">Tracking ID: 876685541999</a>
+                <div class="fx-subnav-actions">
+                    <button type="button" class="fx-icon-btn" id="fxCopyTrackDetails" aria-label="Copy">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <rect x="9" y="9" width="11" height="11" rx="1.5"/>
+                            <path d="M5 15V5a1.5 1.5 0 0 1 1.5-1.5H15"/>
+                        </svg>
+                    </button>
+                    <button type="button" class="fx-icon-btn" aria-label="Share">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="18" cy="5" r="2.5"/>
+                            <circle cx="6" cy="12" r="2.5"/>
+                            <circle cx="18" cy="19" r="2.5"/>
+                            <path d="M8.4 13.3l7.2 4.1M15.6 6.6L8.5 10.7"/>
+                        </svg>
+                    </button>
+                    <button type="button" class="fx-icon-btn" aria-label="More">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <circle cx="12" cy="5" r="1.6"/>
+                            <circle cx="12" cy="12" r="1.6"/>
+                            <circle cx="12" cy="19" r="1.6"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="fx-fromto">
+                <div class="fx-fromto-col">
+                    <span class="fx-fromto-label">From</span>
+                    <span class="fx-fromto-place">JACKSONVILLE, FL US</span>
+                </div>
+                <span class="fx-fromto-arrow" aria-hidden="true">→</span>
+                <div class="fx-fromto-col fx-fromto-col--to">
+                    <span class="fx-fromto-label">To</span>
+                    <span class="fx-fromto-place">LUTZ, FL US</span>
+                </div>
+            </div>
+
+            <section class="fx-section" id="travel-history" aria-labelledby="travel-title">
+                <h2 class="fx-h2" id="travel-title">Travel history</h2>
+                <p class="fx-help-text">You're viewing the most updated information to help minimize the need for customer support.</p>
+
+                <div class="fx-timeline">
+                <div class="fx-day">
+                    <h3 class="fx-day-title">Friday, 09/04/2026</h3>
+                    <ul class="fx-events">
+                        <li class="fx-event">
+                            <div class="fx-event-marker">
+                                <span class="fx-arrow-marker" aria-hidden="true">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                        <path d="M5 12h14M13 6l6 6-6 6"/>
+                                    </svg>
+                                </span>
+                            </div>
+                            <div class="fx-event-body">
+                                <div class="fx-event-time">9:31 AM</div>
+                                <div class="fx-event-status">On the way</div>
+                                <div class="fx-event-loc">Memphis, TN</div>
+                            </div>
+                        </li>
+                        <li class="fx-event">
+                            <div class="fx-event-marker"><span class="fx-dot" aria-hidden="true"></span></div>
+                            <div class="fx-event-body">
+                                <div class="fx-event-time">4:16 AM</div>
+                                <div class="fx-event-status">Arrived at FedEx hub</div>
+                                <div class="fx-event-loc">Memphis, TN</div>
+                            </div>
+                        </li>
+                        <li class="fx-event">
+                            <div class="fx-event-marker"><span class="fx-dot" aria-hidden="true"></span></div>
+                            <div class="fx-event-body">
+                                <div class="fx-event-time">12:48 AM</div>
+                                <div class="fx-event-status">Left FedEx origin facility</div>
+                                <div class="fx-event-loc">Jacksonville, FL</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="fx-day">
+                    <h3 class="fx-day-title">Thursday, 09/03/2026</h3>
+                    <ul class="fx-events">
+                        <li class="fx-event">
+                            <div class="fx-event-marker"><span class="fx-dot" aria-hidden="true"></span></div>
+                            <div class="fx-event-body">
+                                <div class="fx-event-time">9:47 PM</div>
+                                <div class="fx-event-status">Picked up</div>
+                                <div class="fx-event-loc">Jacksonville, FL</div>
+                            </div>
+                        </li>
+                        <li class="fx-event">
+                            <div class="fx-event-marker"><span class="fx-dot" aria-hidden="true"></span></div>
+                            <div class="fx-event-body">
+                                <div class="fx-event-time">10:59 AM</div>
+                                <div class="fx-event-status">Shipment information sent to FedEx</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+            </section>
+
+            <section class="fx-facts" aria-labelledby="facts-title">
+                <button type="button" class="fx-facts-toggle" id="facts-title" aria-expanded="true" aria-controls="factsBody">
+                    <span>Shipment facts</span>
+                    <svg class="fx-facts-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M6 15l6-6 6 6"/>
+                    </svg>
+                </button>
+
+                <div class="fx-facts-body" id="factsBody">
+                    <div class="fx-fact-block">
+                        <div class="fx-fact-head">
+                            <svg width="28" height="28" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                                <path d="M8 18l16-8 16 8v16l-16 8-16-8V18z"/>
+                                <path d="M8 18l16 8 16-8M24 26v16"/>
+                            </svg>
+                            <span>Shipment overview</span>
+                        </div>
+                        <table class="fx-table">
+                            <tbody>
+                                <tr>
+                                    <th>Tracking number</th>
+                                    <td>876685541999</td>
+                                </tr>
+                                <tr>
+                                    <th>Ship date <span class="fx-q" title="More info">?</span></th>
+                                    <td>9/03/2026</td>
+                                </tr>
+                                <tr>
+                                    <th>Delivery details <span class="fx-q" title="More info">?</span></th>
+                                    <td>Will be updated soon</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="fx-fact-block">
+                        <div class="fx-fact-head">
+                            <svg width="28" height="28" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                                <rect x="6" y="16" width="22" height="14" rx="1"/>
+                                <path d="M28 20h8l6 6v4h-14"/>
+                                <circle cx="14" cy="32" r="3.5"/>
+                                <circle cx="34" cy="32" r="3.5"/>
+                            </svg>
+                            <span>Services</span>
+                        </div>
+                        <table class="fx-table">
+                            <tbody>
+                                <tr>
+                                    <th>Service</th>
+                                    <td>FedEx First Overnight</td>
+                                </tr>
+                                <tr>
+                                    <th>Terms</th>
+                                    <td>Third Party</td>
+                                </tr>
+                                <tr>
+                                    <th>Special handling section</th>
+                                    <td>Deliver Weekday, Residential Delivery</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="fx-fact-block">
+                        <div class="fx-fact-head">
+                                    <svg width="28" height="28" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                                        <path d="M10 34h28l-4-10H14l-4 10z"/>
+                                        <path d="M18 24V16h12v8"/>
+                                        <text x="24" y="31" text-anchor="middle" font-size="8" fill="currentColor" stroke="none" font-family="Arial,sans-serif">LB</text>
+                                    </svg>
+                            <span>Package details</span>
+                        </div>
+                        <table class="fx-table">
+                            <tbody>
+                                <tr>
+                                    <th>Weight</th>
+                                    <td>0.5 lbs / 0.23 kgs</td>
+                                </tr>
+                                <tr>
+                                    <th>Total pieces</th>
+                                    <td>1</td>
+                                </tr>
+                                <tr>
+                                    <th>Total shipment weight</th>
+                                    <td>0.5 lbs / 0.23 kgs</td>
+                                </tr>
+                                <tr>
+                                    <th>Packaging</th>
+                                    <td>FedEx Envelope</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="fx-footer">
+                <h3 class="fx-footer-h">Our company</h3>
+                <a href="#">About FedEx</a>
+                <a href="#">Our Portfolio</a>
+                <a href="#">Investor Relations</a>
+                <a href="#">Careers</a>
+                <a href="#">Transportation Contracting Opportunities</a>
+                <a href="#">FedEx Blog</a>
+                <a href="#">Corporate Responsibility</a>
+                <a href="#">Newsroom</a>
+                <a href="#">Contact Us</a>
+
+                <h3 class="fx-footer-h">More from FedEx</h3>
+                <a href="#">FedEx Compatible</a>
+                <a href="#">FedEx Developer Portal</a>
+                <a href="#">FedEx Logistics</a>
+
+                <h3 class="fx-footer-h">Policy center</h3>
+                <a href="#">Terms of Use</a>
+                <a href="#">Privacy &amp; Security</a>
+                <a href="#" class="fx-footer-link-underline">Ad Choices</a>
+                <a href="#">Your Privacy Choices</a>
+                <div class="fx-region">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <circle cx="12" cy="12" r="9"/>
+                        <path d="M3 12h18M12 3c2.8 2.8 4.2 6 4.2 9s-1.4 6.2-4.2 9c-2.8-2.8-4.2-6-4.2-9s1.4-6.2 4.2-9z"/>
+                    </svg>
+                    United States
+                </div>
+
+                <h3 class="fx-footer-h">Follow FedEx</h3>
+                <div class="fx-social" aria-label="Social links">
+                    <a href="#" aria-label="Email">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 7 9-7"/></svg>
+                    </a>
+                    <a href="#" aria-label="Facebook">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z"/></svg>
+                    </a>
+                    <a href="#" aria-label="X">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 3H21l-6.6 7.5L22 21h-6.2l-4.9-6.4L5.4 21H2.6l7-8L2 3h6.3l4.4 5.8L18.2 3zm-1.1 16.2h1.7L7 4.7H5.2l11.9 14.5z"/></svg>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                    </a>
+                    <a href="#" aria-label="LinkedIn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 9H3.7v11h2.8V9zM5.1 3.5A1.7 1.7 0 1 0 5.1 7a1.7 1.7 0 0 0 0-3.5zM20.3 20h-2.8v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H10.8V9h2.7v1.5h.1c.4-.7 1.3-1.8 3.1-1.8 3.3 0 3.9 2.2 3.9 5V20z"/></svg>
+                    </a>
+                    <a href="#" aria-label="YouTube">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12.2s0-3.4-.4-5c-.2-.9-.9-1.6-1.8-1.8C18.7 5 12 5 12 5s-6.7 0-8.8.4C2.3 5.6 1.6 6.3 1.4 7.2 1 8.8 1 12.2 1 12.2s0 3.4.4 5c.2.9.9 1.6 1.8 1.8C5.3 19.4 12 19.4 12 19.4s6.7 0 8.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-5 .4-5zM9.8 15.5v-6.6l6.2 3.3-6.2 3.3z"/></svg>
+                    </a>
+                    <a href="#" aria-label="Pinterest">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.1 2.5 7.6 6.1 9.1-.1-.8-.2-2 0-2.9.2-.8 1.3-5.4 1.3-5.4s-.3-.7-.3-1.6c0-1.5.9-2.6 2-2.6.9 0 1.4.7 1.4 1.5 0 .9-.6 2.3-.9 3.5-.3 1.1.5 1.9 1.6 1.9 1.9 0 3.2-2.4 3.2-5.3 0-2.2-1.5-3.8-4.2-3.8-3.1 0-5 2.3-5 4.8 0 .9.3 1.5.7 2 .2.1.2.2.1.5l-.3 1c-.1.2-.2.3-.4.2-1.5-.6-2.2-2.3-2.2-4.2 0-3.1 2.6-6.9 7.8-6.9 4.2 0 6.9 3 6.9 6.3 0 4.3-2.4 7.5-5.9 7.5-1.2 0-2.3-.6-2.7-1.4l-.7 2.8c-.3 1-1 2.2-1.5 3C10.1 21.9 11 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+                    </a>
+                </div>
+            </footer>
+
+            <div class="fx-legal">
+                <div>© FedEx 1995-2026</div>
+                <div class="fx-legal-links">
+                    <a href="#">Site Map</a> |
+                    <a href="#">Cookie Consent</a> |
+                    <a href="#">Cookie Consent</a>
+                </div>
+            </div>
+        </div>
+
+        <button type="button" class="fx-fab" aria-label="Ask FedEx">
+            <svg width="26" height="22" viewBox="0 0 28 24" fill="currentColor" aria-hidden="true">
+                <path d="M11 1.5h11.5A3.5 3.5 0 0 1 26 5v6a3.5 3.5 0 0 1-3.5 3.5H19l-3.2 2.8V14.5H11A3.5 3.5 0 0 1 7.5 11V5A3.5 3.5 0 0 1 11 1.5z" opacity=".85"/>
+                <path d="M2.5 7h13A3 3 0 0 1 18.5 10v5.5a3 3 0 0 1-3 3H9.8L6 22.2v-3.7H2.5a3 3 0 0 1-3-3V10a3 3 0 0 1 3-3z"/>
+                <circle cx="6.2" cy="13.2" r="1.15" fill="#4d148c"/>
+                <circle cx="9" cy="13.2" r="1.15" fill="#4d148c"/>
+                <circle cx="11.8" cy="13.2" r="1.15" fill="#4d148c"/>
+            </svg>
+            Ask FedEx
+        </button>
+    </div>
+
+    <script>
+        (function () {
+            var shell = document.getElementById('shell');
+            var statusView = document.getElementById('viewStatus');
+            var detailsView = document.getElementById('viewDetails');
+
+            function showDetails(e) {
+                if (e) e.preventDefault();
+                shell.setAttribute('data-view', 'details');
+                statusView.hidden = true;
+                detailsView.hidden = false;
+                window.scrollTo(0, 0);
+            }
+
+            function showStatus(e) {
+                if (e) e.preventDefault();
+                shell.setAttribute('data-view', 'status');
+                detailsView.hidden = true;
+                statusView.hidden = false;
+                window.scrollTo(0, 0);
+            }
+
+            document.querySelectorAll('[data-open-details]').forEach(function (el) {
+                el.addEventListener('click', showDetails);
+            });
+
+            var backBtn = document.getElementById('backToStatus');
+            if (backBtn) backBtn.addEventListener('click', showStatus);
+
+            var factsToggle = document.getElementById('facts-title');
+            var factsBody = document.getElementById('factsBody');
+            if (factsToggle && factsBody) {
+                factsToggle.addEventListener('click', function () {
+                    var open = factsToggle.getAttribute('aria-expanded') === 'true';
+                    factsToggle.setAttribute('aria-expanded', open ? 'false' : 'true');
+                    factsBody.hidden = open;
+                });
+            }
+
+            function trackingNumber() {
+                var el = document.getElementById('fxTrackId');
+                if (el) {
+                    return String(el.textContent || '').replace(/^#/, '').trim();
+                }
+                return '876685541999';
+            }
+
+            function writeClipboard(value) {
+                if (navigator.clipboard && navigator.clipboard.writeText && window.isSecureContext) {
+                    return navigator.clipboard.writeText(value);
+                }
+                return new Promise(function (resolve, reject) {
+                    var ta = document.createElement('textarea');
+                    ta.value = value;
+                    ta.setAttribute('readonly', '');
+                    ta.style.cssText = 'position:fixed;left:-9999px;top:0;opacity:0;';
+                    document.body.appendChild(ta);
+                    ta.focus();
+                    ta.select();
+                    ta.setSelectionRange(0, value.length);
+                    var ok = false;
+                    try {
+                        ok = document.execCommand('copy');
+                    } catch (err) {
+                        ok = false;
+                    }
+                    document.body.removeChild(ta);
+                    if (ok) resolve();
+                    else reject(new Error('copy failed'));
+                });
+            }
+
+            function showCopiedToast() {
+                var existing = document.querySelector('.fx-copy-toast');
+                if (existing) existing.remove();
+                var toast = document.createElement('div');
+                toast.className = 'fx-copy-toast';
+                toast.textContent = 'Tracking number copied';
+                toast.setAttribute('role', 'status');
+                document.body.appendChild(toast);
+                requestAnimationFrame(function () {
+                    toast.classList.add('is-visible');
+                });
+                setTimeout(function () {
+                    toast.classList.remove('is-visible');
+                    setTimeout(function () {
+                        toast.remove();
+                    }, 220);
+                }, 1600);
+            }
+
+            function copyTrackingNumber(e) {
+                if (e) e.preventDefault();
+                var value = trackingNumber();
+                if (!value) return;
+                writeClipboard(value).then(showCopiedToast, showCopiedToast);
+            }
+
+            var copyHero = document.getElementById('fxCopyTrack');
+            var copyDetails = document.getElementById('fxCopyTrackDetails');
+            var subnavId = document.getElementById('fxSubnavId');
+            if (copyHero) copyHero.addEventListener('click', copyTrackingNumber);
+            if (copyDetails) copyDetails.addEventListener('click', copyTrackingNumber);
+            if (subnavId) subnavId.addEventListener('click', copyTrackingNumber);
+        })();
+    </script>
+</body>
+</html>
