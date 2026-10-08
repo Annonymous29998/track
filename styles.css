@@ -30,7 +30,7 @@ html {
 
 body {
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-    background: #fff;
+    background: #e8e8e8;
     color: var(--text);
     line-height: 1.5;
     font-size: 16px;
@@ -39,32 +39,20 @@ body {
     min-height: 100dvh;
     width: 100%;
     margin: 0;
+    padding: 12px 0 24px;
 }
 
 .mobile-shell {
     width: 100%;
-    max-width: 100%;
-    margin: 0;
+    max-width: var(--shell-max);
+    margin: 0 auto;
     min-height: 100vh;
     min-height: 100dvh;
     background: #fff;
     position: relative;
-    box-shadow: none;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
     display: flex;
     flex-direction: column;
-}
-
-/* Desktop only: optional centered phone preview */
-@media (min-width: 1024px) {
-    body {
-        background: #e8e8e8;
-    }
-
-    .mobile-shell {
-        max-width: var(--shell-max);
-        margin: 0 auto;
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
-    }
 }
 
 /* Header */
@@ -495,7 +483,7 @@ body.is-fx-results {
     position: fixed;
     z-index: 9000;
     bottom: calc(20px + env(safe-area-inset-bottom, 0px));
-    right: max(10px, env(safe-area-inset-right, 0px));
+    right: max(10px, calc((100vw - min(var(--shell-max), 100vw)) / 2 + 10px));
     display: inline-flex;
     align-items: center;
     padding: 0;
@@ -506,12 +494,6 @@ body.is-fx-results {
     font-family: inherit;
     -webkit-tap-highlight-color: transparent;
     filter: drop-shadow(0 4px 12px rgba(77, 20, 140, 0.35));
-}
-
-@media (min-width: 1024px) {
-    .m-back-top {
-        right: calc((100vw - min(var(--shell-max), 100vw)) / 2 + 10px);
-    }
 }
 
 .m-back-top-label {
@@ -1680,13 +1662,6 @@ body.is-fx-results {
         max-width: 100%;
         padding-left: 28px;
         padding-right: 28px;
-    }
-}
-
-/* Wider viewports: slight vertical breathing room on desktop frame */
-@media (min-width: 1024px) {
-    body {
-        padding: 12px 0 24px;
     }
 }
 

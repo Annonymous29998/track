@@ -454,5 +454,60 @@ window.__FEDEX_TRACKING_DATA__ = {
         "date": "09/09/2026 11:25 AM"
       }
     ]
+  },
+  "772948305162": {
+    "status": "exception",
+    "deliveryStatus": "Delivery Exception",
+    "holdMessage": {
+      "en": "Your package is on hold. We're working to clear it and update your delivery date.",
+      "es": "Su paquete está en espera. Estamos trabajando para liberarlo y actualizar su fecha de entrega."
+    },
+    "serviceType": "FedEx International Priority",
+    "estimatedDelivery": "Friday, 10/16/2026 by end of day",
+    "deliveryTime": "9:00 PM",
+    "sender": "Diane Kancauski",
+    "receiver": "Matthew Johnston",
+    "packageContent": "Consignment box",
+    "packaging": "Consignment box",
+    "weight": "0.5 lbs / 0.23 kgs",
+    "totalPieces": "1",
+    "totalShipmentWeight": "0.5 lbs / 0.23 kgs",
+    "signatureRequired": true,
+    "fromLocation": "OAKLAND, CA, USA",
+    "toLocation": "73 COGHLAN ST, NIDDRIE VIC 3042, AUSTRALIA",
+    "statusNearPlace": "Melbourne, Australia",
+    "labelCreatedDate": "10/08/2026",
+    "timeline": [
+      {
+        "title": "LABEL CREATED",
+        "location": "FROM OAKLAND, CA, USA",
+        "date": "10/08/2026 10:30 AM"
+      },
+      {
+        "title": "PACKAGE RECEIVED BY FEDEX",
+        "location": "OAKLAND, CA",
+        "date": "10/08/2026 4:50 PM"
+      },
+      {
+        "title": "IN TRANSIT",
+        "location": "MEMPHIS, TN",
+        "date": "10/09/2026 8:05 PM"
+      },
+      {
+        "title": "IN TRANSIT",
+        "location": "SYDNEY, NSW, AUSTRALIA",
+        "date": "10/10/2026 11:22 AM"
+      },
+      {
+        "title": "IN TRANSIT",
+        "location": "MELBOURNE, VIC, AUSTRALIA",
+        "date": "10/12/2026 6:40 PM"
+      },
+      {
+        "title": "DELIVERY EXCEPTION",
+        "location": "MELBOURNE, VIC, AUSTRALIA",
+        "date": "10/13/2026 9:15 AM"
+      }
+    ]
   }
 };

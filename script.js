@@ -586,6 +586,7 @@ document.addEventListener('DOMContentLoaded', function () {
             .replace(/^FROM\s+/i, '')
             .replace(/,\s*USA$/i, '')
             .replace(/,\s*SOUTH AFRICA$/i, '')
+            .replace(/,\s*AUSTRALIA$/i, '')
             .trim();
         const parsed = parseUsCityStateFromLocation(cleaned);
         if (parsed) {
@@ -597,6 +598,18 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (u.indexOf('JOHANNESBURG') >= 0) {
             return 'Johannesburg, South Africa';
+        }
+        if (u.indexOf('NIDDRIE') >= 0 || u.indexOf('COGHLAN') >= 0) {
+            return 'Niddrie, Australia';
+        }
+        if (u.indexOf('MELBOURNE') >= 0) {
+            return 'Melbourne, Australia';
+        }
+        if (u.indexOf('SYDNEY') >= 0) {
+            return 'Sydney, Australia';
+        }
+        if (u.indexOf('OAKLAND') >= 0) {
+            return 'Oakland, CA';
         }
         if (u.indexOf('MEMPHIS') >= 0) {
             return 'Memphis, TN';
@@ -657,6 +670,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function locationMatchToken(loc) {
         const u = String(loc || '').toUpperCase();
+        if (u.indexOf('NIDDRIE') >= 0 || u.indexOf('COGHLAN') >= 0) {
+            return 'NIDDRIE';
+        }
+        if (u.indexOf('MELBOURNE') >= 0) {
+            return 'MELBOURNE';
+        }
+        if (u.indexOf('SYDNEY') >= 0) {
+            return 'SYDNEY';
+        }
+        if (u.indexOf('OAKLAND') >= 0) {
+            return 'OAKLAND';
+        }
         if (u.indexOf('BLYTHE') >= 0) {
             return 'BLYTHE';
         }
@@ -1240,6 +1265,18 @@ document.addEventListener('DOMContentLoaded', function () {
         ) {
             return 'Africa/Johannesburg';
         }
+        if (
+            u.indexOf('MELBOURNE') >= 0 ||
+            u.indexOf('NIDDRIE') >= 0 ||
+            u.indexOf('COGHLAN') >= 0 ||
+            u.indexOf('VIC ') >= 0 ||
+            u.indexOf(' VIC') >= 0
+        ) {
+            return 'Australia/Melbourne';
+        }
+        if (u.indexOf('SYDNEY') >= 0 || u.indexOf('NSW') >= 0 || u.indexOf('AUSTRALIA') >= 0) {
+            return 'Australia/Sydney';
+        }
         const parsed = parseUsCityStateFromLocation(locationString);
         if (!parsed) {
             return null;
@@ -1623,6 +1660,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (near) {
             if (/South Africa/i.test(near)) {
                 return (near.replace(/,\s*South Africa$/i, '') + ' ZA').toUpperCase();
+            }
+            if (/Australia/i.test(near)) {
+                return (near.replace(/,\s*Australia$/i, '') + ' AU').toUpperCase();
             }
             return (near + (/,\s*[A-Z]{2}$/.test(near) ? ' US' : '')).toUpperCase();
         }
