@@ -459,12 +459,12 @@ window.__FEDEX_TRACKING_DATA__ = {
     "status": "exception",
     "deliveryStatus": "Delivery Exception",
     "holdMessage": {
-      "en": "Your package is on hold. We're working to clear it and update your delivery date.",
-      "es": "Su paquete está en espera. Estamos trabajando para liberarlo y actualizar su fecha de entrega."
+      "en": "Your shipment has been placed on hold at the Melbourne, Australia facility due to pending customs duties. Please contact your sender for more information about this hold.",
+      "es": "Su envío ha sido puesto en espera en la instalación de Melbourne, Australia debido a derechos de aduana pendientes. Por favor contacte a su remitente para más información sobre esta espera."
     },
     "serviceType": "FedEx International Priority",
-    "estimatedDelivery": "Friday, 10/16/2026 by end of day",
-    "deliveryTime": "9:00 PM",
+    "estimatedDelivery": "Pending",
+    "deliveryTime": "Pending",
     "sender": "Diane Kancauski",
     "receiver": "Matthew Johnston",
     "packageContent": "Consignment box",
@@ -476,37 +476,37 @@ window.__FEDEX_TRACKING_DATA__ = {
     "fromLocation": "OAKLAND, CA, USA",
     "toLocation": "73 COGHLAN ST, NIDDRIE VIC 3042, AUSTRALIA",
     "statusNearPlace": "Melbourne, Australia",
-    "labelCreatedDate": "10/08/2026",
+    "labelCreatedDate": "10/28/2026",
     "timeline": [
       {
         "title": "LABEL CREATED",
         "location": "FROM OAKLAND, CA, USA",
-        "date": "10/08/2026 10:30 AM"
+        "date": "10/28/2026 10:30 AM"
       },
       {
         "title": "PACKAGE RECEIVED BY FEDEX",
         "location": "OAKLAND, CA",
-        "date": "10/08/2026 4:50 PM"
+        "date": "10/28/2026 4:50 PM"
       },
       {
         "title": "IN TRANSIT",
         "location": "MEMPHIS, TN",
-        "date": "10/09/2026 8:05 PM"
+        "date": "10/29/2026 8:05 PM"
       },
       {
         "title": "IN TRANSIT",
-        "location": "SYDNEY, NSW, AUSTRALIA",
-        "date": "10/10/2026 11:22 AM"
+        "location": "INDIANAPOLIS, IN",
+        "date": "10/30/2026 11:22 AM"
       },
       {
         "title": "IN TRANSIT",
         "location": "MELBOURNE, VIC, AUSTRALIA",
-        "date": "10/12/2026 6:40 PM"
+        "date": "11/02/2026 6:40 PM"
       },
       {
         "title": "DELIVERY EXCEPTION",
         "location": "MELBOURNE, VIC, AUSTRALIA",
-        "date": "10/13/2026 9:15 AM"
+        "date": "11/03/2026 9:15 AM"
       }
     ]
   }

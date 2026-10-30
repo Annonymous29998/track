@@ -66,23 +66,21 @@ body.fx-mock-page * {
     line-height: 1.4;
 }
 
-/* Phone frame only on large desktop — phones/tablets stay edge-to-edge */
-@media (min-width: 1024px) {
-    body.fx-mock-page {
-        background: #dcdcdc;
-    }
+body.fx-mock-page {
+    background: #dcdcdc;
+    padding: 12px 0 24px;
+}
 
-    body.fx-mock-page .fx-shell {
-        max-width: var(--fx-shell);
-        margin: 0 auto;
-        box-shadow: 0 0 24px rgba(0, 0, 0, 0.12);
-    }
+body.fx-mock-page .fx-shell {
+    max-width: var(--fx-shell);
+    margin: 0 auto;
+    box-shadow: 0 0 24px rgba(0, 0, 0, 0.12);
+}
 
-    body.fx-mock-page .fx-banner {
-        max-width: var(--fx-shell);
-        margin-left: auto;
-        margin-right: auto;
-    }
+body.fx-mock-page .fx-banner {
+    max-width: var(--fx-shell);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* Header — stays pinned while scrolling results */
@@ -817,22 +815,45 @@ body.fx-mock-page * {
     font-size: 0.95rem;
 }
 
+/* FOLLOW FEDEX + icons on one row (FedEx mobile) */
+.fx-follow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 12px;
+    margin-top: 18px;
+}
+
+.fx-follow .fx-footer-h {
+    margin: 0;
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
 .fx-social {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    padding: 8px 0 12px;
+    align-items: center;
+    gap: 8px;
+    padding: 0;
+    flex: 1 1 auto;
+    min-width: 0;
 }
 
 .fx-social a {
-    width: 36px;
-    height: 36px;
-    border: 1.5px solid #666;
+    width: 34px;
+    height: 34px;
+    border: 1.5px solid #555;
     border-radius: 50%;
     display: grid;
     place-items: center;
-    color: #444;
+    color: #333;
     padding: 0;
+    flex-shrink: 0;
+}
+
+.fx-social a svg {
+    display: block;
 }
 
 .fx-legal {
@@ -856,7 +877,7 @@ body.fx-mock-page * {
 /* ASK FEDEX FAB */
 .fx-fab {
     position: fixed;
-    right: max(16px, env(safe-area-inset-right, 0px));
+    right: max(16px, calc((100vw - min(var(--fx-shell), var(--shell-max, 480px), 100vw)) / 2 + 16px));
     bottom: max(20px, env(safe-area-inset-bottom, 0px));
     z-index: 50;
     width: 64px;
@@ -915,12 +936,6 @@ body.fx-mock-page * {
 .fx-shell[data-view="status"] .fx-view--details,
 .fx-shell[data-view="details"] .fx-view--status {
     display: none !important;
-}
-
-@media (min-width: 1024px) {
-    .fx-fab {
-        right: max(24px, calc(50% - min(var(--fx-shell), var(--shell-max, 480px)) / 2 + 18px));
-    }
 }
 
 /* Small-phone tweaks */
