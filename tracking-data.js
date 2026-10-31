@@ -506,7 +506,7 @@ window.__FEDEX_TRACKING_DATA__ = {
       {
         "title": "DELIVERY EXCEPTION",
         "location": "MELBOURNE, VIC, AUSTRALIA",
-        "date": "11/03/2026 9:15 AM"
+        "date": "11/05/2026 9:15 AM"
       }
     ]
   }
