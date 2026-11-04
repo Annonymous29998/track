@@ -460,8 +460,8 @@ window.__FEDEX_TRACKING_DATA__ = {
     "stayOnHold": true,
     "deliveryStatus": "Delivery Exception",
     "holdMessage": {
-      "en": "Your shipment has been placed on hold at the Memphis, TN facility. Please contact your sender for more information about this hold.",
-      "es": "Su envío ha sido puesto en espera en la instalación de Memphis, TN. Por favor contacte a su remitente para más información sobre esta espera."
+      "en": "Your shipment has been placed on hold at the Melbourne, Australia facility due to pending customs duties. Please contact your sender for more information about this hold.",
+      "es": "Su envío ha sido puesto en espera en la instalación de Melbourne, Australia debido a derechos de aduana pendientes. Por favor contacte a su remitente para más información sobre esta espera."
     },
     "serviceType": "FedEx International Priority",
     "estimatedDelivery": "Pending",
