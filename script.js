@@ -881,6 +881,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 latest = i;
             }
         }
+        if (data.stayOnHold || data.status === 'exception') {
+            for (let i = scans.length - 1; i >= 0; i--) {
+                if (scans[i].stepTitle === 'DELIVERY EXCEPTION') {
+                    latest = i;
+                    break;
+                }
+            }
+        }
         const scan = scans[latest];
         return {
             data: Object.assign({}, data, {

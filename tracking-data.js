@@ -457,6 +457,7 @@ window.__FEDEX_TRACKING_DATA__ = {
   },
   "772948305162": {
     "status": "exception",
+    "stayOnHold": true,
     "deliveryStatus": "Delivery Exception",
     "holdMessage": {
       "en": "Your shipment has been placed on hold at the Memphis, TN facility. Please contact your sender for more information about this hold.",
