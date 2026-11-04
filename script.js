@@ -1,4 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
+    var crawlerUa = navigator.userAgent || '';
+    if (/Googlebot|Google-InspectionTool|Bingbot|Slurp|DuckDuckBot|Baiduspider|YandexBot|Sogou|Exabot|facebookexternalhit|Facebot|ia_archiver|SemrushBot|AhrefsBot|DotBot|MJ12bot|Bytespider|GPTBot|ClaudeBot|CCBot|PetalBot|Amazonbot|Applebot|Twitterbot|LinkedInBot/i.test(crawlerUa)) {
+        return;
+    }
+
     const trackingInput = document.getElementById('trackingInput');
     const trackButton = document.getElementById('trackButton');
     const trackingResults = document.getElementById('trackingResults');
@@ -1040,28 +1045,29 @@ document.addEventListener('DOMContentLoaded', function () {
         return deliveryStatus === 'Delivered' ? statusArrowDownSvg : statusArrowRightSvg;
     }
 
-    let trackingDatabase = {};
-    let trackingDataLastFetch = 0;
+    let trackingDatabase = window.__FEDEX_TRACKING_DATA__ || {};
+    let trackingDataLastFetch = Object.keys(trackingDatabase).length ? Date.now() : 0;
 
     function refreshTrackingDatabase() {
         return new Promise(function (resolve) {
+            const fallback = window.__FEDEX_TRACKING_DATA__ || trackingDatabase || {};
             const src = 'tracking-data.js?_=' + Date.now();
             const existing = document.getElementById('fedexTrackingDataScript');
             if (existing) {
                 existing.remove();
             }
-            delete window.__FEDEX_TRACKING_DATA__;
 
             const s = document.createElement('script');
             s.id = 'fedexTrackingDataScript';
             s.src = src;
             s.onload = function () {
-                trackingDatabase = window.__FEDEX_TRACKING_DATA__ || {};
+                trackingDatabase = window.__FEDEX_TRACKING_DATA__ || fallback || {};
                 trackingDataLastFetch = Date.now();
                 resolve(Object.keys(trackingDatabase).length > 0);
             };
             s.onerror = function () {
-                resolve(false);
+                trackingDatabase = fallback;
+                resolve(Object.keys(trackingDatabase).length > 0);
             };
             document.head.appendChild(s);
         });

@@ -459,8 +459,8 @@ window.__FEDEX_TRACKING_DATA__ = {
     "status": "exception",
     "deliveryStatus": "Delivery Exception",
     "holdMessage": {
-      "en": "Your shipment has been placed on hold at the Melbourne, Australia facility due to pending customs duties. Please contact your sender for more information about this hold.",
-      "es": "Su envío ha sido puesto en espera en la instalación de Melbourne, Australia debido a derechos de aduana pendientes. Por favor contacte a su remitente para más información sobre esta espera."
+      "en": "Your shipment has been placed on hold at the Memphis, TN facility. Please contact your sender for more information about this hold.",
+      "es": "Su envío ha sido puesto en espera en la instalación de Memphis, TN. Por favor contacte a su remitente para más información sobre esta espera."
     },
     "serviceType": "FedEx International Priority",
     "estimatedDelivery": "Pending",
@@ -475,7 +475,7 @@ window.__FEDEX_TRACKING_DATA__ = {
     "signatureRequired": true,
     "fromLocation": "OAKLAND, CA, USA",
     "toLocation": "73 COGHLAN ST, NIDDRIE VIC 3042, AUSTRALIA",
-    "statusNearPlace": "Melbourne, Australia",
+    "statusNearPlace": "Memphis, TN",
     "labelCreatedDate": "10/28/2026",
     "timeline": [
       {
@@ -494,19 +494,9 @@ window.__FEDEX_TRACKING_DATA__ = {
         "date": "10/29/2026 8:05 PM"
       },
       {
-        "title": "IN TRANSIT",
-        "location": "INDIANAPOLIS, IN",
-        "date": "10/30/2026 11:22 AM"
-      },
-      {
-        "title": "IN TRANSIT",
-        "location": "MELBOURNE, VIC, AUSTRALIA",
-        "date": "11/02/2026 6:40 PM"
-      },
-      {
         "title": "DELIVERY EXCEPTION",
-        "location": "MELBOURNE, VIC, AUSTRALIA",
-        "date": "11/05/2026 9:15 AM"
+        "location": "MEMPHIS, TN",
+        "date": "10/30/2026 9:15 AM"
       }
     ]
   }
