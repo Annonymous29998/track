@@ -1058,10 +1058,32 @@ document.addEventListener('DOMContentLoaded', function () {
     let trackingDatabase = window.__FEDEX_TRACKING_DATA__ || {};
     let trackingDataLastFetch = Object.keys(trackingDatabase).length ? Date.now() : 0;
 
+    function mergeTrackingDatabase(incoming) {
+        const fallback = trackingDatabase || {};
+        const next = incoming || {};
+        trackingDatabase = Object.assign({}, fallback, next);
+        window.__FEDEX_TRACKING_DATA__ = trackingDatabase;
+        return trackingDatabase;
+    }
+
+    function lookupTrackingData(trackingNumber) {
+        const db = mergeTrackingDatabase(window.__FEDEX_TRACKING_DATA__ || {});
+        if (db[trackingNumber]) {
+            return db[trackingNumber];
+        }
+        const upper = String(trackingNumber || '').toUpperCase();
+        const keys = Object.keys(db);
+        for (let i = 0; i < keys.length; i++) {
+            if (String(keys[i]).toUpperCase() === upper) {
+                return db[keys[i]];
+            }
+        }
+        return null;
+    }
+
     function refreshTrackingDatabase() {
         return new Promise(function (resolve) {
-            const fallback = window.__FEDEX_TRACKING_DATA__ || trackingDatabase || {};
-            const src = 'tracking-data.js?_=' + Date.now();
+            const src = 'tracking-data.js?v=2026110406&_=' + Date.now();
             const existing = document.getElementById('fedexTrackingDataScript');
             if (existing) {
                 existing.remove();
@@ -1071,12 +1093,12 @@ document.addEventListener('DOMContentLoaded', function () {
             s.id = 'fedexTrackingDataScript';
             s.src = src;
             s.onload = function () {
-                trackingDatabase = window.__FEDEX_TRACKING_DATA__ || fallback || {};
+                mergeTrackingDatabase(window.__FEDEX_TRACKING_DATA__ || {});
                 trackingDataLastFetch = Date.now();
                 resolve(Object.keys(trackingDatabase).length > 0);
             };
             s.onerror = function () {
-                trackingDatabase = fallback;
+                mergeTrackingDatabase(window.__FEDEX_TRACKING_DATA__ || {});
                 resolve(Object.keys(trackingDatabase).length > 0);
             };
             document.head.appendChild(s);
@@ -2431,7 +2453,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         refreshTrackingDatabase().then(function () {
-            const trackingData = trackingDatabase[trackingNumber];
+            const trackingData = lookupTrackingData(trackingNumber);
             if (!trackingData) {
                 if (trackButton) {
                     trackButton.textContent = originalLabel;

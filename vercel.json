@@ -8,6 +8,15 @@
           "value": "noindex, nofollow, noarchive, nosnippet, noimageindex"
         }
       ]
+    },
+    {
+      "source": "/(index.html|script.js|tracking-data.js)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-cache, no-store, must-revalidate"
+        }
+      ]
     }
   ]
 }
