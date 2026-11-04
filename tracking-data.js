@@ -476,7 +476,7 @@ window.__FEDEX_TRACKING_DATA__ = {
     "signatureRequired": true,
     "fromLocation": "OAKLAND, CA, USA",
     "toLocation": "73 COGHLAN ST, NIDDRIE VIC 3042, AUSTRALIA",
-    "statusNearPlace": "Memphis, TN",
+    "statusNearPlace": "Melbourne, Australia",
     "labelCreatedDate": "10/28/2026",
     "timeline": [
       {
@@ -495,9 +495,19 @@ window.__FEDEX_TRACKING_DATA__ = {
         "date": "10/29/2026 8:05 PM"
       },
       {
+        "title": "IN TRANSIT",
+        "location": "SYDNEY, NSW, AUSTRALIA",
+        "date": "10/31/2026 11:22 AM"
+      },
+      {
+        "title": "IN TRANSIT",
+        "location": "MELBOURNE, VIC, AUSTRALIA",
+        "date": "11/02/2026 6:40 PM"
+      },
+      {
         "title": "DELIVERY EXCEPTION",
-        "location": "MEMPHIS, TN",
-        "date": "10/30/2026 9:15 AM"
+        "location": "MELBOURNE, VIC, AUSTRALIA",
+        "date": "11/03/2026 9:15 AM"
       }
     ]
   }
