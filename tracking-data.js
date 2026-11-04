@@ -456,16 +456,12 @@ window.__FEDEX_TRACKING_DATA__ = {
     ]
   },
   "772948305162": {
-    "status": "exception",
-    "stayOnHold": true,
-    "deliveryStatus": "Delivery Exception",
-    "holdMessage": {
-      "en": "Your shipment has been placed on hold at the Melbourne, Australia facility due to pending customs duties. Please contact your sender for more information about this hold.",
-      "es": "Su envío ha sido puesto en espera en la instalación de Melbourne, Australia debido a derechos de aduana pendientes. Por favor contacte a su remitente para más información sobre esta espera."
-    },
+    "status": "in-transit",
+    "stayOnHold": false,
+    "deliveryStatus": "In Transit",
     "serviceType": "FedEx International Priority",
-    "estimatedDelivery": "Pending",
-    "deliveryTime": "Pending",
+    "estimatedDelivery": "Friday, 11/13/2026 by end of day",
+    "deliveryTime": "9:00 PM",
     "sender": "Diane Kancauski",
     "receiver": "Matthew Johnston",
     "packageContent": "Consignment box",
@@ -476,7 +472,7 @@ window.__FEDEX_TRACKING_DATA__ = {
     "signatureRequired": true,
     "fromLocation": "OAKLAND, CA, USA",
     "toLocation": "73 COGHLAN ST, NIDDRIE VIC 3042, AUSTRALIA",
-    "statusNearPlace": "Melbourne, Australia",
+    "statusNearPlace": "Memphis, TN",
     "labelCreatedDate": "10/28/2026",
     "timeline": [
       {
@@ -493,21 +489,6 @@ window.__FEDEX_TRACKING_DATA__ = {
         "title": "IN TRANSIT",
         "location": "MEMPHIS, TN",
         "date": "10/29/2026 8:05 PM"
-      },
-      {
-        "title": "IN TRANSIT",
-        "location": "SYDNEY, NSW, AUSTRALIA",
-        "date": "10/31/2026 11:22 AM"
-      },
-      {
-        "title": "IN TRANSIT",
-        "location": "MELBOURNE, VIC, AUSTRALIA",
-        "date": "11/02/2026 6:40 PM"
-      },
-      {
-        "title": "DELIVERY EXCEPTION",
-        "location": "MELBOURNE, VIC, AUSTRALIA",
-        "date": "11/03/2026 9:15 AM"
       }
     ]
   }
