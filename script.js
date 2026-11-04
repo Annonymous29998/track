@@ -180,6 +180,7 @@ document.addEventListener('DOMContentLoaded', function () {
             moreAria: 'More',
             currentlyIn: 'Currently in',
             statusDeliveryUpdated: 'Delivery updated',
+            statusOnHold: 'Delivery on hold',
             statusOnTheWay: 'On the way',
             statusOutForDelivery: 'Out for delivery',
             statusDelivered: 'Delivered',
@@ -334,6 +335,7 @@ document.addEventListener('DOMContentLoaded', function () {
             moreAria: 'Más',
             currentlyIn: 'Actualmente en',
             statusDeliveryUpdated: 'Entrega actualizada',
+            statusOnHold: 'Entrega en espera',
             statusOnTheWay: 'En camino',
             statusOutForDelivery: 'En reparto',
             statusDelivered: 'Entregado',
@@ -1755,7 +1757,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function cardStatusHeading(deliveryStatus, onHold) {
         if (onHold) {
-            return t('statusDeliveryUpdated');
+            return t('statusOnHold');
         }
         if (deliveryStatus === 'Out For Delivery') {
             return t('statusOutForDelivery');
