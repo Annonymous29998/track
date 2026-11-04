@@ -886,7 +886,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (data.stayOnHold || data.status === 'exception') {
             for (let i = scans.length - 1; i >= 0; i--) {
                 if (scans[i].stepTitle === 'DELIVERY EXCEPTION') {
-                    latest = i;
+                    if (!scans[i].at || scans[i].at.getTime() <= now) {
+                        latest = i;
+                    }
                     break;
                 }
             }

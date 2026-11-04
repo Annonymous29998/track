@@ -457,8 +457,12 @@ window.__FEDEX_TRACKING_DATA__ = {
   },
   "772948305162": {
     "status": "in-transit",
-    "stayOnHold": false,
+    "stayOnHold": true,
     "deliveryStatus": "In Transit",
+    "holdMessage": {
+      "en": "Your shipment has been placed on hold at the Melbourne, Australia facility due to pending customs duties. Please contact your sender for more information about this hold.",
+      "es": "Su envío ha sido puesto en espera en la instalación de Melbourne, Australia debido a derechos de aduana pendientes. Por favor contacte a su remitente para más información sobre esta espera."
+    },
     "serviceType": "FedEx International Priority",
     "estimatedDelivery": "Friday, 11/13/2026 by end of day",
     "deliveryTime": "9:00 PM",
@@ -489,6 +493,16 @@ window.__FEDEX_TRACKING_DATA__ = {
         "title": "IN TRANSIT",
         "location": "MEMPHIS, TN",
         "date": "10/29/2026 8:05 PM"
+      },
+      {
+        "title": "IN TRANSIT",
+        "location": "MELBOURNE, VIC, AUSTRALIA",
+        "date": "11/06/2026 6:40 AM"
+      },
+      {
+        "title": "DELIVERY EXCEPTION",
+        "location": "MELBOURNE, VIC, AUSTRALIA",
+        "date": "11/06/2026 9:15 AM"
       }
     ]
   }
