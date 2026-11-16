@@ -2183,7 +2183,11 @@ document.addEventListener('DOMContentLoaded', function () {
             overview.innerHTML =
                 factRow(t('trackingNumberLabel'), trackingNumber) +
                 factRow(t('shipDateLabel'), formatShipDateDisplay(data.labelCreatedDate || ''), true) +
-                factRow(t('deliveryDetailsLabel'), deliveryDetails, true);
+                factRow(t('deliveryDetailsLabel'), deliveryDetails, true) +
+                factRow(t('senderName'), data.sender || '') +
+                factRow(t('fromLabel'), data.fromLocation || '') +
+                factRow(t('receiverName'), data.receiver || '') +
+                factRow(t('toLabel'), data.toLocation || '');
         }
         const services = document.getElementById('fxFactsServices');
         if (services) {
@@ -2196,6 +2200,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (pkg) {
             const weight = data.weight || t('weightDefault');
             pkg.innerHTML =
+                factRow(t('packageContent'), data.packageContent || data.packaging || t('packagingDefault')) +
                 factRow(t('weightLabel'), weight) +
                 factRow(t('totalPiecesLabel'), data.totalPieces || t('totalPiecesDefault')) +
                 factRow(t('totalShipmentWeightLabel'), data.totalShipmentWeight || weight) +
