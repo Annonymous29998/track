@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     let lastShownTrackingNumber = null;
     let resultsViewMode = 'status';
+    let holdBannerShouldShow = false;
 
     const TIMELINE_TITLE_ES = {
         FROM: 'DESDE',
@@ -960,6 +961,15 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.classList.remove('is-fx-results');
     }
 
+    function syncHoldBanner() {
+        const holdBanner = document.getElementById('fxHoldBanner');
+        if (!holdBanner) {
+            return;
+        }
+        const onStatusPage = !trackingResults || trackingResults.getAttribute('data-view') !== 'details';
+        holdBanner.hidden = !(holdBannerShouldShow && onStatusPage);
+    }
+
     function showFxDetailsView() {
         resultsViewMode = 'details';
         if (trackingResults) {
@@ -971,6 +981,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (viewDetails) {
             viewDetails.hidden = false;
         }
+        syncHoldBanner();
         window.scrollTo(0, 0);
     }
 
@@ -985,6 +996,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (viewStatus) {
             viewStatus.hidden = false;
         }
+        syncHoldBanner();
         window.scrollTo(0, 0);
     }
 
@@ -2167,10 +2179,8 @@ document.addEventListener('DOMContentLoaded', function () {
         setText('fxRouteFrom', fromRoute);
         setText('fxRouteTo', toRoute);
         setText('fxCardStatus', cardStatusHeading(data.deliveryStatus, onHold, data));
-        const holdBanner = document.getElementById('fxHoldBanner');
-        if (holdBanner) {
-            holdBanner.hidden = !onHold;
-        }
+        holdBannerShouldShow = onHold;
+        syncHoldBanner();
         setText('fxFromPlace', fromRoute);
         setText('fxToPlace', toRoute);
         setText('fxSubnavId', t('trackingId') + ': ' + trackingNumber);

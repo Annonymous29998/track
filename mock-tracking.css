@@ -122,6 +122,10 @@ body.fx-mock-page .fx-banner {
     display: none !important;
 }
 
+.fx-shell[data-view="details"] .fx-hold-banner {
+    display: none !important;
+}
+
 .fx-logo {
     text-decoration: none;
     font-size: 1.55rem;
