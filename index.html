@@ -17,8 +17,8 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="styles.css?v=2026110401">
-    <link rel="stylesheet" href="mock-tracking.css?v=2026100426">
+    <link rel="stylesheet" href="styles.css?v=2026111830">
+    <link rel="stylesheet" href="mock-tracking.css?v=2026111830">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -205,26 +205,31 @@
             </div>
 
             <section id="trackingResults" class="fx-shell" style="display: none;" data-view="status" hidden>
-                <header class="fx-header">
-                    <a class="fx-logo" href="#" id="fxLogoHome" data-i18n-attr="aria-label:logoHomeAria">
-                        <span class="fx-logo-fed">Fed</span><span class="fx-logo-ex">Ex</span>
-                    </a>
-                    <div class="fx-header-actions">
-                        <a class="fx-signin" href="#" id="fxSignIn">
-                            <span data-i18n="signUpOrLogIn">Sign Up or Log In</span>
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                                <circle cx="12" cy="12" r="10"/>
-                                <circle cx="12" cy="9" r="3.2"/>
-                                <path d="M6.5 18.2c1.6-2.2 3.5-3.2 5.5-3.2s3.9 1 5.5 3.2"/>
-                            </svg>
+                <div class="fx-header-stack">
+                    <header class="fx-header">
+                        <a class="fx-logo" href="#" id="fxLogoHome" data-i18n-attr="aria-label:logoHomeAria">
+                            <span class="fx-logo-fed">Fed</span><span class="fx-logo-ex">Ex</span>
                         </a>
-                        <button type="button" class="fx-menu" id="fxMenuBtn" data-i18n-attr="aria-label:menuAria">
-                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                <path d="M4 7h16M4 12h16M4 17h16"/>
-                            </svg>
-                        </button>
+                        <div class="fx-header-actions">
+                            <a class="fx-signin" href="#" id="fxSignIn">
+                                <span data-i18n="signUpOrLogIn">Sign Up or Log In</span>
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <circle cx="12" cy="9" r="3.2"/>
+                                    <path d="M6.5 18.2c1.6-2.2 3.5-3.2 5.5-3.2s3.9 1 5.5 3.2"/>
+                                </svg>
+                            </a>
+                            <button type="button" class="fx-menu" id="fxMenuBtn" data-i18n-attr="aria-label:menuAria">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M4 7h16M4 12h16M4 17h16"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </header>
+                    <div class="fx-hold-banner" id="fxHoldBanner" hidden role="status">
+                        <span data-i18n="packageOnHoldBanner">Package on hold</span>
                     </div>
-                </header>
+                </div>
 
                 <div class="fx-view fx-view--status" id="viewStatus">
                     <section class="fx-hero" aria-label="Shipment status">
@@ -430,7 +435,7 @@
         </div>
     </div>
 
-    <script src="tracking-data.js?v=2026111619"></script>
-    <script src="script.js?v=2026111619" defer></script>
+    <script src="tracking-data.js?v=2026111830"></script>
+    <script src="script.js?v=2026111830" defer></script>
 </body>
 </html>

@@ -459,9 +459,13 @@ window.__FEDEX_TRACKING_DATA__ = {
     "status": "in-transit",
     "stayOnHold": true,
     "deliveryStatus": "In Transit",
+    "cardStatus": {
+      "en": "Delivery on hold (custom duties need to be paid)",
+      "es": "Entrega en espera (se deben pagar aranceles aduaneros)"
+    },
     "holdMessage": {
-      "en": "Your shipment has been placed on hold at the Melbourne, Australia facility due to pending customs duties. Please contact your sender for more information about this hold.",
-      "es": "Su envío ha sido puesto en espera en la instalación de Melbourne, Australia debido a derechos de aduana pendientes. Por favor contacte a su remitente para más información sobre esta espera."
+      "en": "The package is being held at Australian Customs at the border to enter Australia, and you're required to pay for Import Duties and Taxes and Demurrage Fees along with Clearance Fee.",
+      "es": "El paquete está retenido en Aduanas de Australia en la frontera de entrada a Australia, y debe pagar los aranceles de importación e impuestos, las tarifas de demora y la tarifa de despacho."
     },
     "serviceType": "FedEx International Priority",
     "estimatedDelivery": "Friday, 11/13/2026 by end of day",
@@ -496,12 +500,12 @@ window.__FEDEX_TRACKING_DATA__ = {
       },
       {
         "title": "IN TRANSIT",
-        "location": "MELBOURNE, VIC, AUSTRALIA",
+        "location": "IN FLIGHT TO AUSTRALIA",
         "date": "11/06/2026 6:40 AM"
       },
       {
         "title": "DELIVERY EXCEPTION",
-        "location": "MELBOURNE, VIC, AUSTRALIA",
+        "location": "AUSTRALIAN CUSTOMS, BORDER ENTRY, VIC, AUSTRALIA",
         "date": "11/06/2026 9:15 AM"
       }
     ]

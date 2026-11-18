@@ -84,6 +84,15 @@ body.fx-mock-page .fx-banner {
 }
 
 /* Header — stays pinned while scrolling results */
+.fx-header-stack {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    width: 100%;
+    flex-shrink: 0;
+}
+
 .fx-header {
     display: flex;
     align-items: center;
@@ -92,14 +101,25 @@ body.fx-mock-page .fx-banner {
     padding-left: max(14px, env(safe-area-inset-left, 0px));
     padding-right: max(14px, env(safe-area-inset-right, 0px));
     background: var(--fx-purple);
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    z-index: 100;
     gap: 8px;
     width: 100%;
     flex-shrink: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.fx-hold-banner {
+    background: #ff6200;
+    color: #fff;
+    text-align: center;
+    font-size: 0.88rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    padding: 8px 14px;
+    width: 100%;
+}
+
+.fx-hold-banner[hidden] {
+    display: none !important;
 }
 
 .fx-logo {
@@ -330,6 +350,7 @@ body.fx-mock-page .fx-banner {
     font-weight: 700;
     color: #1a1a1a;
     margin-bottom: 6px;
+    line-height: 1.25;
 }
 
 .fx-details-link {

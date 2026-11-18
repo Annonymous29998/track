@@ -181,6 +181,7 @@ document.addEventListener('DOMContentLoaded', function () {
             currentlyIn: 'Currently in',
             statusDeliveryUpdated: 'Delivery updated',
             statusOnHold: 'Delivery on hold',
+            packageOnHoldBanner: 'Package on hold',
             statusOnTheWay: 'On the way',
             statusOutForDelivery: 'Out for delivery',
             statusDelivered: 'Delivered',
@@ -201,6 +202,7 @@ document.addEventListener('DOMContentLoaded', function () {
             totalPiecesLabel: 'Total pieces',
             packagingLabel: 'Packaging',
             willUpdateSoon: 'Will be updated soon',
+            deliveryDetailsOnHold: 'On hold',
             termsShipper: 'Third Party',
             specialHandlingDefault: 'Deliver Weekday, Residential Delivery',
             totalPiecesDefault: '1',
@@ -336,6 +338,7 @@ document.addEventListener('DOMContentLoaded', function () {
             currentlyIn: 'Actualmente en',
             statusDeliveryUpdated: 'Entrega actualizada',
             statusOnHold: 'Entrega en espera',
+            packageOnHoldBanner: 'Paquete en espera',
             statusOnTheWay: 'En camino',
             statusOutForDelivery: 'En reparto',
             statusDelivered: 'Entregado',
@@ -356,6 +359,7 @@ document.addEventListener('DOMContentLoaded', function () {
             totalPiecesLabel: 'Piezas totales',
             packagingLabel: 'Embalaje',
             willUpdateSoon: 'Se actualizará pronto',
+            deliveryDetailsOnHold: 'En espera',
             termsShipper: 'Tercero',
             specialHandlingDefault: 'Entrega entre semana, entrega residencial',
             totalPiecesDefault: '1',
@@ -608,6 +612,15 @@ document.addEventListener('DOMContentLoaded', function () {
         }
         if (u.indexOf('NIDDRIE') >= 0 || u.indexOf('COGHLAN') >= 0) {
             return 'Niddrie, Australia';
+        }
+        if (u.indexOf('IN FLIGHT') >= 0) {
+            return 'In flight to Australia';
+        }
+        if (u.indexOf('CUSTOMS') >= 0 || (u.indexOf('BORDER') >= 0 && u.indexOf('AUSTRALIA') >= 0)) {
+            return 'Australian Customs (border)';
+        }
+        if (u.indexOf('MELBOURNE') >= 0 && u.indexOf('AIRPORT') >= 0) {
+            return 'Melbourne International Airport';
         }
         if (u.indexOf('MELBOURNE') >= 0) {
             return 'Melbourne, Australia';
@@ -1779,7 +1792,21 @@ document.addEventListener('DOMContentLoaded', function () {
             .trim();
     }
 
-    function cardStatusHeading(deliveryStatus, onHold) {
+    function localizedField(value) {
+        if (!value) {
+            return '';
+        }
+        if (typeof value === 'string') {
+            return value;
+        }
+        return value[currentLang] || value.en || '';
+    }
+
+    function cardStatusHeading(deliveryStatus, onHold, data) {
+        const custom = localizedField(data && data.cardStatus);
+        if (custom) {
+            return custom;
+        }
         if (onHold) {
             return t('statusOnHold');
         }
@@ -2103,6 +2130,7 @@ document.addEventListener('DOMContentLoaded', function () {
         lastScanStageIdx = progressed.stageIdx;
 
         const onHold =
+            !!data.stayOnHold ||
             (progressed.stage && progressed.stage.stepTitle === 'DELIVERY EXCEPTION') ||
             data.deliveryStatus === 'Delivery Exception';
 
@@ -2138,7 +2166,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         setText('fxRouteFrom', fromRoute);
         setText('fxRouteTo', toRoute);
-        setText('fxCardStatus', cardStatusHeading(data.deliveryStatus, onHold));
+        setText('fxCardStatus', cardStatusHeading(data.deliveryStatus, onHold, data));
+        const holdBanner = document.getElementById('fxHoldBanner');
+        if (holdBanner) {
+            holdBanner.hidden = !onHold;
+        }
         setText('fxFromPlace', fromRoute);
         setText('fxToPlace', toRoute);
         setText('fxSubnavId', t('trackingId') + ': ' + trackingNumber);
@@ -2175,7 +2207,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const estimatedLine = data.estimatedDelivery || '';
         const deliveryDetails = onHold
-            ? t('willUpdateSoon')
+            ? t('deliveryDetailsOnHold')
             : estimatedLine || data.deliveryTime || t('willUpdateSoon');
 
         const overview = document.getElementById('fxFactsOverview');
