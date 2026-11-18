@@ -1,9 +1,14 @@
-# Prevent stale HTML/JS on InfinityFree
+# InfinityFree / Apache: do not cache tracking pages or assets.
 <IfModule mod_headers.c>
-    <FilesMatch "index\.html$">
-        Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header unset ETag
+    <FilesMatch "\.(html|htm|js|css)$">
+        Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+        Header set Pragma "no-cache"
+        Header set Expires "0"
     </FilesMatch>
-    <FilesMatch "(script|tracking-data)\.js$">
-        Header set Cache-Control "no-cache, must-revalidate"
-    </FilesMatch>
+</IfModule>
+FileETag None
+
+<IfModule mod_expires.c>
+    ExpiresActive Off
 </IfModule>

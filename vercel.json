@@ -10,7 +10,7 @@
       ]
     },
     {
-      "source": "/(index.html|script.js|tracking-data.js)",
+      "source": "/(index.html|script.js|tracking-data.js|styles.css|mock-tracking.css)",
       "headers": [
         {
           "key": "Cache-Control",

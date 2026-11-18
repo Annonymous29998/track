@@ -966,7 +966,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!holdBanner) {
             return;
         }
-        const onStatusPage = !trackingResults || trackingResults.getAttribute('data-view') !== 'details';
+        const onStatusPage = trackingResults && trackingResults.getAttribute('data-view') === 'status';
         holdBanner.hidden = !(holdBannerShouldShow && onStatusPage);
     }
 
@@ -1108,9 +1108,18 @@ document.addEventListener('DOMContentLoaded', function () {
         return null;
     }
 
+    function trackingDataRefreshSrc() {
+        const tagged = document.querySelector('script[src*="tracking-data.js"]');
+        const src = tagged && tagged.getAttribute('src');
+        if (src) {
+            return src.replace(/([?&])_=\d+/, '') + (src.indexOf('?') >= 0 ? '&' : '?') + '_=' + Date.now();
+        }
+        return 'tracking-data.js?_=' + Date.now();
+    }
+
     function refreshTrackingDatabase() {
         return new Promise(function (resolve) {
-            const src = 'tracking-data.js?v=2026110406&_=' + Date.now();
+            const src = trackingDataRefreshSrc();
             const existing = document.getElementById('fedexTrackingDataScript');
             if (existing) {
                 existing.remove();
