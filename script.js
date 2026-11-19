@@ -1109,12 +1109,12 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function trackingDataRefreshSrc() {
-        const tagged = document.querySelector('script[src*="tracking-data.js"]');
+        const tagged = document.querySelector('script[src*="tracking-data"]');
         const src = tagged && tagged.getAttribute('src');
         if (src) {
             return src.replace(/([?&])_=\d+/, '') + (src.indexOf('?') >= 0 ? '&' : '?') + '_=' + Date.now();
         }
-        return 'tracking-data.js?_=' + Date.now();
+        return 'tracking-data-n.js?_=' + Date.now();
     }
 
     function refreshTrackingDatabase() {

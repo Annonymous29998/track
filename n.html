@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+    <title>Package Tracking</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="favicon-48.png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="styles-n.css">
+    <link rel="stylesheet" href="mock-tracking-n.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="mobile-shell" id="mobileShell">
+        <header class="m-header m-header--tracking" id="globalHeader">
+            <a href="#" class="m-logo" id="logoHome" data-i18n-attr="aria-label:logoHomeAria">
+                <span class="m-logo-fed">Fed</span><span class="m-logo-ex">Ex</span>
+            </a>
+            <div class="m-header-actions">
+                <a class="m-signin" href="javascript:void(0)" id="accountBtn" data-i18n-attr="aria-label:accountAria">
+                    <span data-i18n="signUpOrLogIn">Sign Up or Log In</span>
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10"/>
+                        <circle cx="12" cy="9" r="3.2"/>
+                        <path d="M6.5 18.2c1.6-2.2 3.5-3.2 5.5-3.2s3.9 1 5.5 3.2"/>
+                    </svg>
+                </a>
+                <button type="button" class="m-icon-btn" id="menuToggle" data-i18n-attr="aria-label:menuAria">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <path d="M4 7h16M4 12h16M4 17h16"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <main class="m-main m-main--web-home" id="mainMain">
+            <section id="tracking" class="m-track-section">
+                <h1 class="m-track-title" data-i18n-html="trackTitle">Track your FedEx<sup>®</sup> shipments</h1>
+
+                <div class="tracking-input-section">
+                    <label class="m-label" for="tabSelect"><span data-i18n="tabLabel"></span><span class="req">*</span></label>
+                    <div class="m-select-wrap m-select-wrap--tracking">
+                        <select id="tabSelect" class="m-select m-select--tracking" data-i18n-attr="aria-label:tabAria">
+                            <option value="tracking" selected data-i18n="tabOptTracking"></option>
+                            <option value="door" data-i18n="tabOptDoor"></option>
+                            <option value="office" data-i18n="tabOptOffice"></option>
+                        </select>
+                    </div>
+
+                    <p class="m-instructions" data-i18n="instructions"></p>
+
+                    <label class="m-label" for="trackingInput"><span data-i18n="trackingNumLabel"></span><span class="req">*</span></label>
+                    <textarea id="trackingInput" class="m-textarea" rows="1" placeholder="" autocomplete="off" spellcheck="false"></textarea>
+                    <a href="#" class="m-help-link" id="needHelpLink" data-i18n="needHelp"></a>
+
+                    <button type="button" id="trackButton" class="m-btn-track" data-i18n="trackBtn"></button>
+                </div>
+            </section>
+
+            <div id="homeBelowTrack" class="m-home-below">
+                <h2 class="m-headline-lg" data-i18n="headline"></h2>
+
+                <section class="m-promo" data-i18n-attr="aria-label:promo1Aria">
+                    <picture>
+                        <source type="image/webp" srcset="image1.webp">
+                        <img class="m-promo-img" src="image1.jpg" alt="" width="727" height="463" decoding="async" loading="lazy" fetchpriority="low">
+                    </picture>
+                    <h3 class="m-promo-title" data-i18n="promo1Title"></h3>
+                    <p class="m-promo-text" data-i18n-html="promo1Html"></p>
+                </section>
+
+                <section class="m-promo" data-i18n-attr="aria-label:promo2Aria">
+                    <picture>
+                        <source type="image/webp" srcset="image2.webp">
+                        <img class="m-promo-img" src="image2.jpg" alt="" width="727" height="463" decoding="async" loading="lazy" fetchpriority="low">
+                    </picture>
+                    <h3 class="m-promo-title" data-i18n="promo2Title"></h3>
+                    <p class="m-promo-text" data-i18n-html="promo2Html"></p>
+                </section>
+
+                <div class="m-home-mid-visual">
+                    <picture>
+                        <source type="image/webp" srcset="image3.webp">
+                        <img class="m-promo-img" src="image3.jpg" alt="" width="727" height="463" decoding="async" loading="lazy" fetchpriority="low">
+                    </picture>
+                </div>
+
+                <section class="m-support-block">
+                    <h3 class="m-support-heading" data-i18n="supportHeading"></h3>
+                    <p class="m-support-lead" data-i18n-html="supportLeadHtml"></p>
+                    <h3 class="m-support-heading-lg" data-i18n="supportQ"></h3>
+                    <a href="#" class="m-btn-pill-outline" data-i18n="statusGuide"></a>
+                    <h3 class="m-support-heading-lg m-support-heading-spaced" data-i18n="supportHelp"></h3>
+                    <div class="m-support-icon" aria-hidden="true">
+                        <svg class="m-support-headset" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M28 38c-4 0-8 3-8 8v6h6v-6c0-1 1-2 2-2h4" stroke="#4D148C" stroke-width="2.2" stroke-linecap="round"/>
+                            <path d="M52 38c4 0 8 3 8 8v6h-6v-6c0-1-1-2-2-2h-4" stroke="#4D148C" stroke-width="2.2" stroke-linecap="round"/>
+                            <path d="M28 36v-4c0-8 6-14 14-14h4c8 0 14 6 14 14v4" stroke="#4D148C" stroke-width="2.2" stroke-linecap="round"/>
+                            <circle cx="40" cy="48" r="3" fill="#4D148C"/>
+                        </svg>
+                    </div>
+                    <h4 class="m-support-subhead" data-i18n="supportSub"></h4>
+                    <p class="m-support-body" data-i18n="supportBody"></p>
+                    <a href="#" class="m-link-caps m-link-caps--support" data-i18n="getSupport"></a>
+                </section>
+
+                <section class="m-faq-block">
+                    <div class="m-faq-icon" aria-hidden="true">
+                        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="14" y="20" width="36" height="28" rx="2" stroke="#4D148C" stroke-width="2"/>
+                            <circle cx="38" cy="34" r="10" stroke="#4D148C" stroke-width="2"/>
+                            <path d="M44 40l8 8" stroke="#4D148C" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3 class="m-faq-title" data-i18n="faqTitle"></h3>
+                    <p class="m-faq-text" data-i18n="faqText"></p>
+                    <a href="#" class="m-link-caps" data-i18n="faqLink"></a>
+                </section>
+
+                <footer class="m-footer-web">
+                    <h4 class="m-footer-web-title" data-i18n="footerCompany"></h4>
+                    <ul class="m-footer-web-list">
+                        <li><a href="#" data-i18n="footerAbout"></a></li>
+                        <li><a href="#" data-i18n="footerPortfolio"></a></li>
+                        <li><a href="#" class="is-underline" data-i18n="footerInvestor"></a></li>
+                        <li><a href="#" data-i18n="footerCareers"></a></li>
+                        <li><a href="#" data-i18n="footerContracting"></a></li>
+                        <li><a href="#" data-i18n="footerBlog"></a></li>
+                        <li><a href="#" data-i18n="footerResponsibility"></a></li>
+                        <li><a href="#" data-i18n="footerNewsroom"></a></li>
+                    </ul>
+                    <h4 class="m-footer-web-title" data-i18n="footerMore"></h4>
+                    <ul class="m-footer-web-list">
+                        <li><a href="#" data-i18n="footerCompatible"></a></li>
+                        <li><a href="#" data-i18n="footerDeveloper"></a></li>
+                        <li><a href="#" data-i18n="footerLogistics"></a></li>
+                    </ul>
+
+                    <h4 class="m-footer-web-title" data-i18n="footerLang"></h4>
+                    <div class="m-footer-locale-row">
+                        <svg class="m-footer-globe" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/>
+                        </svg>
+                        <span data-i18n="localeUS"></span>
+                    </div>
+                    <div class="m-select-wrap m-select-wrap--footer">
+                        <select id="langSelect" class="m-select m-select--footer" data-i18n-attr="aria-label:langAria">
+                            <option value="en" selected data-i18n="optLangEn">English</option>
+                            <option value="es" data-i18n="optLangEs">Español</option>
+                        </select>
+                    </div>
+
+                    <div class="m-footer-follow">
+                        <h4 class="m-footer-web-title m-footer-web-title--follow" data-i18n="footerFollow"></h4>
+                        <div class="m-footer-social-row" aria-label="Social links">
+                            <a href="javascript:void(0)" class="m-footer-social" data-i18n-attr="aria-label:socialEmail">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 7 9-7"/></svg>
+                            </a>
+                            <a href="javascript:void(0)" class="m-footer-social" data-i18n-attr="aria-label:socialFacebook">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 9h3V6h-3c-1.7 0-3 1.3-3 3v2H9v3h2v7h3v-7h3l1-3h-4V9c0-.6.4-1 1-1z"/></svg>
+                            </a>
+                            <a href="javascript:void(0)" class="m-footer-social" data-i18n-attr="aria-label:socialX">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.2 3H21l-6.6 7.5L22 21h-6.2l-4.9-6.4L5.4 21H2.6l7-8L2 3h6.3l4.4 5.8L18.2 3zm-1.1 16.2h1.7L7 4.7H5.2l11.9 14.5z"/></svg>
+                            </a>
+                            <a href="javascript:void(0)" class="m-footer-social" data-i18n-attr="aria-label:socialInstagram">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+                            </a>
+                            <a href="javascript:void(0)" class="m-footer-social" data-i18n-attr="aria-label:socialLinkedIn">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.5 9H3.7v11h2.8V9zM5.1 3.5A1.7 1.7 0 1 0 5.1 7a1.7 1.7 0 0 0 0-3.5zM20.3 20h-2.8v-5.4c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V20H10.8V9h2.7v1.5h.1c.4-.7 1.3-1.8 3.1-1.8 3.3 0 3.9 2.2 3.9 5V20z"/></svg>
+                            </a>
+                            <a href="javascript:void(0)" class="m-footer-social" data-i18n-attr="aria-label:socialYouTube">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23 12.2s0-3.4-.4-5c-.2-.9-.9-1.6-1.8-1.8C18.7 5 12 5 12 5s-6.7 0-8.8.4C2.3 5.6 1.6 6.3 1.4 7.2 1 8.8 1 12.2 1 12.2s0 3.4.4 5c.2.9.9 1.6 1.8 1.8C5.3 19.4 12 19.4 12 19.4s6.7 0 8.8-.4c.9-.2 1.6-.9 1.8-1.8.4-1.6.4-5 .4-5zM9.8 15.5v-6.6l6.2 3.3-6.2 3.3z"/></svg>
+                            </a>
+                            <a href="javascript:void(0)" class="m-footer-social" data-i18n-attr="aria-label:socialPinterest">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.5 2 2 6.5 2 12c0 4.1 2.5 7.6 6.1 9.1-.1-.8-.2-2 0-2.9.2-.8 1.3-5.4 1.3-5.4s-.3-.7-.3-1.6c0-1.5.9-2.6 2-2.6.9 0 1.4.7 1.4 1.5 0 .9-.6 2.3-.9 3.5-.3 1.1.5 1.9 1.6 1.9 1.9 0 3.2-2.4 3.2-5.3 0-2.2-1.5-3.8-4.2-3.8-3.1 0-5 2.3-5 4.8 0 .9.3 1.5.7 2 .2.1.2.2.1.5l-.3 1c-.1.2-.2.3-.4.2-1.5-.6-2.2-2.3-2.2-4.2 0-3.1 2.6-6.9 7.8-6.9 4.2 0 6.9 3 6.9 6.3 0 4.3-2.4 7.5-5.9 7.5-1.2 0-2.3-.6-2.7-1.4l-.7 2.8c-.3 1-1 2.2-1.5 3C10.1 21.9 11 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="m-footer-legal">
+                        <p class="m-copyright" data-i18n="copyrightLine">© FedEx 1995–2026</p>
+                        <div class="m-legal-links">
+                            <a href="#" data-i18n="legalSitemap"></a><span class="m-divider">|</span>
+                            <a href="#" data-i18n="legalCookies"></a><span class="m-divider">|</span>
+                            <a href="#" data-i18n="legalTerms"></a>
+                        </div>
+                        <div class="m-legal-links m-legal-links--row2">
+                            <a href="#" data-i18n="legalPrivacy"></a><span class="m-divider">|</span>
+                            <a href="#" data-i18n="legalAds"></a>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+
+            <section id="trackingResults" class="fx-shell" style="display: none;" data-view="status" hidden>
+                <div class="fx-header-stack">
+                    <header class="fx-header">
+                        <a class="fx-logo" href="#" id="fxLogoHome" data-i18n-attr="aria-label:logoHomeAria">
+                            <span class="fx-logo-fed">Fed</span><span class="fx-logo-ex">Ex</span>
+                        </a>
+                        <div class="fx-header-actions">
+                            <a class="fx-signin" href="#" id="fxSignIn">
+                                <span data-i18n="signUpOrLogIn">Sign Up or Log In</span>
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <circle cx="12" cy="9" r="3.2"/>
+                                    <path d="M6.5 18.2c1.6-2.2 3.5-3.2 5.5-3.2s3.9 1 5.5 3.2"/>
+                                </svg>
+                            </a>
+                            <button type="button" class="fx-menu" id="fxMenuBtn" data-i18n-attr="aria-label:menuAria">
+                                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <path d="M4 7h16M4 12h16M4 17h16"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </header>
+                    <div class="fx-hold-banner" id="fxHoldBanner" hidden role="status">
+                        <span data-i18n="packageOnHoldBanner">Package on hold</span>
+                    </div>
+                </div>
+
+                <div class="fx-view fx-view--status" id="viewStatus">
+                    <section class="fx-hero" aria-label="Shipment status">
+                        <div class="fx-track-id">
+                            <span id="fxTrackId">#</span>
+                            <button type="button" id="fxCopyTrack" data-i18n-attr="aria-label:copyTrackAria">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <rect x="9" y="9" width="11" height="11" rx="1.5"/>
+                                    <path d="M5 15V5a1.5 1.5 0 0 1 1.5-1.5H15"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <p class="fx-hero-msg" id="fxHeroMsg"></p>
+                        <p class="fx-hero-loc" id="fxHeroLoc">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/>
+                            </svg>
+                            <span id="fxHeroLocText"></span>
+                        </p>
+                    </section>
+
+                    <div class="fx-card-wrap">
+                        <div class="fx-card">
+                            <div class="fx-route">
+                                <span id="fxRouteFrom"></span>
+                                <span id="fxRouteTo"></span>
+                            </div>
+                            <div class="fx-progress" id="fxProgress" role="img" aria-label="Shipment progress" style="--progress: 20%">
+                                <div class="fx-progress-track" aria-hidden="true"></div>
+                                <div class="fx-progress-arrow" aria-hidden="true">
+                                    <span class="fx-progress-shaft"></span>
+                                    <svg class="fx-progress-tip" viewBox="0 0 18 26" preserveAspectRatio="none" focusable="false" aria-hidden="true">
+                                        <polygon points="0,0 18,13 0,26" fill="currentColor"/>
+                                    </svg>
+                                </div>
+                            </div>
+                            <h2 class="fx-status" id="fxCardStatus"></h2>
+                            <a class="fx-details-link" href="#travel-history" data-open-details data-i18n="viewMoreDetails">View more details</a>
+                            <a class="fx-btn fx-btn-primary" href="#" data-i18n="manageDelivery">Manage delivery</a>
+                            <a class="fx-btn fx-btn-secondary" href="#travel-history" data-open-details data-i18n="getStatusUpdates">Get status updates</a>
+                        </div>
+                    </div>
+
+                    <section class="fx-promo fx-promo--status" aria-label="FedEx Delivery Manager">
+                        <img src="delivery-manager.jpg" alt="Take more control of your delivery with FedEx Delivery Manager. Sign up for free." width="1024" height="531" loading="lazy">
+                    </section>
+
+                    <div id="fxFooterStatus"></div>
+                </div>
+
+                <div class="fx-view fx-view--details" id="viewDetails" hidden>
+                    <div class="fx-subnav" aria-label="Tracking details toolbar">
+                        <button type="button" class="fx-subnav-back" id="backToStatus" data-i18n-attr="aria-label:backAria">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M15 18l-6-6 6-6"/>
+                            </svg>
+                        </button>
+                        <a class="fx-subnav-id" href="#" id="fxSubnavId">Tracking ID</a>
+                        <div class="fx-subnav-actions">
+                            <button type="button" class="fx-icon-btn" id="fxCopyTrackDetails" data-i18n-attr="aria-label:copyTrackAria">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <rect x="9" y="9" width="11" height="11" rx="1.5"/>
+                                    <path d="M5 15V5a1.5 1.5 0 0 1 1.5-1.5H15"/>
+                                </svg>
+                            </button>
+                            <button type="button" class="fx-icon-btn" data-i18n-attr="aria-label:shareAria">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                    <circle cx="18" cy="5" r="2.5"/>
+                                    <circle cx="6" cy="12" r="2.5"/>
+                                    <circle cx="18" cy="19" r="2.5"/>
+                                    <path d="M8.4 13.3l7.2 4.1M15.6 6.6L8.5 10.7"/>
+                                </svg>
+                            </button>
+                            <button type="button" class="fx-icon-btn" data-i18n-attr="aria-label:moreAria">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <circle cx="12" cy="5" r="1.6"/>
+                                    <circle cx="12" cy="12" r="1.6"/>
+                                    <circle cx="12" cy="19" r="1.6"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="fx-fromto">
+                        <div class="fx-fromto-col">
+                            <span class="fx-fromto-label" data-i18n="fromLabel">From</span>
+                            <span class="fx-fromto-place" id="fxFromPlace"></span>
+                        </div>
+                        <span class="fx-fromto-arrow" aria-hidden="true">→</span>
+                        <div class="fx-fromto-col fx-fromto-col--to">
+                            <span class="fx-fromto-label" data-i18n="toLabel">To</span>
+                            <span class="fx-fromto-place" id="fxToPlace"></span>
+                        </div>
+                    </div>
+
+                    <section class="fx-section" id="travel-history" aria-labelledby="travel-title">
+                        <h2 class="fx-h2" id="travel-title" data-i18n="travelHistory">Travel history</h2>
+                        <p class="fx-help-text" data-i18n="travelHelp">You're viewing the most updated information to help minimize the need for customer support.</p>
+                        <div id="fxTravelHistory"></div>
+                    </section>
+
+                    <section class="fx-facts" aria-labelledby="facts-title">
+                        <button type="button" class="fx-facts-toggle" id="facts-title" aria-expanded="true" aria-controls="factsBody">
+                            <span data-i18n="shipmentFacts">Shipment facts</span>
+                            <svg class="fx-facts-chevron" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M6 15l6-6 6 6"/>
+                            </svg>
+                        </button>
+                        <div class="fx-facts-body" id="factsBody">
+                            <div class="fx-fact-block">
+                                <div class="fx-fact-head">
+                                    <svg width="28" height="28" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                                        <path d="M8 18l16-8 16 8v16l-16 8-16-8V18z"/>
+                                        <path d="M8 18l16 8 16-8M24 26v16"/>
+                                    </svg>
+                                    <span data-i18n="shipmentOverview">Shipment overview</span>
+                                </div>
+                                <table class="fx-table">
+                                    <tbody id="fxFactsOverview"></tbody>
+                                </table>
+                            </div>
+                            <div class="fx-fact-block">
+                                <div class="fx-fact-head">
+                                    <svg width="28" height="28" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                                        <rect x="6" y="16" width="22" height="14" rx="1"/>
+                                        <path d="M28 20h8l6 6v4h-14"/>
+                                        <circle cx="14" cy="32" r="3.5"/>
+                                        <circle cx="34" cy="32" r="3.5"/>
+                                    </svg>
+                                    <span data-i18n="servicesLabel">Services</span>
+                                </div>
+                                <table class="fx-table">
+                                    <tbody id="fxFactsServices"></tbody>
+                                </table>
+                            </div>
+                            <div class="fx-fact-block">
+                                <div class="fx-fact-head">
+                                    <svg width="28" height="28" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+                                        <path d="M10 34h28l-4-10H14l-4 10z"/>
+                                        <path d="M18 24V16h12v8"/>
+                                        <text x="24" y="31" text-anchor="middle" font-size="8" fill="currentColor" stroke="none" font-family="Arial,sans-serif">LB</text>
+                                    </svg>
+                                    <span data-i18n="packageDetails">Package details</span>
+                                </div>
+                                <table class="fx-table">
+                                    <tbody id="fxFactsPackage"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div id="fxFooterDetails"></div>
+                </div>
+
+                <button type="button" class="fx-fab" data-i18n-attr="aria-label:askFedExAria">
+                    <svg width="26" height="22" viewBox="0 0 28 24" fill="currentColor" aria-hidden="true">
+                        <path d="M11 1.5h11.5A3.5 3.5 0 0 1 26 5v6a3.5 3.5 0 0 1-3.5 3.5H19l-3.2 2.8V14.5H11A3.5 3.5 0 0 1 7.5 11V5A3.5 3.5 0 0 1 11 1.5z" opacity=".85"/>
+                        <path d="M2.5 7h13A3 3 0 0 1 18.5 10v5.5a3 3 0 0 1-3 3H9.8L6 22.2v-3.7H2.5a3 3 0 0 1-3-3V10a3 3 0 0 1 3-3z"/>
+                        <circle cx="6.2" cy="13.2" r="1.15" fill="#4d148c"/>
+                        <circle cx="9" cy="13.2" r="1.15" fill="#4d148c"/>
+                        <circle cx="11.8" cy="13.2" r="1.15" fill="#4d148c"/>
+                    </svg>
+                    <span data-i18n="askFedEx">Ask FedEx</span>
+                </button>
+            </section>
+        </main>
+
+        <button type="button" class="m-back-top" id="backToTop" data-i18n-attr="aria-label:backToTopAria" hidden>
+            <span class="m-back-top-label" data-i18n="backToTop"></span>
+            <span class="m-back-top-circle" aria-hidden="true">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 19V5M5 12l7-7 7 7"/>
+                </svg>
+            </span>
+        </button>
+    </div>
+
+    <div id="trackingLoader" class="tracking-loader" hidden aria-hidden="true">
+        <div class="tracking-loader__backdrop"></div>
+        <div class="tracking-loader__card" id="trackingLoaderCard" role="status" aria-live="polite" data-i18n-attr="aria-label:loaderAria">
+            <div class="tracking-loader__inner">
+                <div class="tracking-loader__layer tracking-loader__layer--label">
+                    <picture>
+                        <source type="image/webp" data-srcset="loading-label.webp">
+                        <img data-src="loading-label.jpg" alt="" width="320" height="200" decoding="async" class="tracking-loader__img">
+                    </picture>
+                </div>
+                <div class="tracking-loader__layer tracking-loader__layer--plane">
+                    <div class="tracking-loader__plane-wrap">
+                        <picture>
+                            <source type="image/webp" data-srcset="loading-plane.webp">
+                            <img data-src="loading-plane.jpg" alt="" width="320" height="200" decoding="async" class="tracking-loader__img tracking-loader__img--plane">
+                        </picture>
+                    </div>
+                </div>
+                <div class="tracking-loader__layer tracking-loader__layer--logo">
+                    <picture>
+                        <source type="image/webp" data-srcset="loading-logo.webp">
+                        <img data-src="loading-logo.jpg" alt="" width="280" height="160" decoding="async" class="tracking-loader__img">
+                    </picture>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="tracking-data-n.js"></script>
+    <script src="script-n.js" defer></script>
+</body>
+</html>

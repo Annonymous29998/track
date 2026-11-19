@@ -1,4 +1,6 @@
 # InfinityFree / Apache: do not cache tracking pages or assets.
+DirectoryIndex n.html index.html
+
 <IfModule mod_headers.c>
     Header unset ETag
     <FilesMatch "\.(html|htm|js|css)$">
