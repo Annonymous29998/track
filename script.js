@@ -2188,7 +2188,7 @@ document.addEventListener('DOMContentLoaded', function () {
         setText('fxRouteFrom', fromRoute);
         setText('fxRouteTo', toRoute);
         setText('fxCardStatus', cardStatusHeading(data.deliveryStatus, onHold, data));
-        holdBannerShouldShow = onHold;
+        holdBannerShouldShow = onHold && !data.hideHoldBanner;
         syncHoldBanner();
         setText('fxFromPlace', fromRoute);
         setText('fxToPlace', toRoute);

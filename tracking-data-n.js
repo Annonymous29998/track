@@ -511,11 +511,19 @@ window.__FEDEX_TRACKING_DATA__ = {
     ]
   },
   "775203916482": {
-    "status": "in-transit",
-    "deliveryStatus": "Label Created",
+    "status": "exception",
+    "deliveryStatus": "Delivery Exception",
+    "stayOnHold": true,
+    "hideHoldBanner": true,
+    "cardStatus": "Delivery on hold",
+    "holdMessage": {
+      "en": "Unfortunately we are unable to deliver your package at this time. The shipment is currently on hold.",
+      "es": "Lamentablemente no podemos entregar su paquete en este momento. El envío está actualmente en espera."
+    },
     "serviceType": "FedEx Express Saver",
     "estimatedDelivery": "Thursday, 11/19/2026 by end of day",
     "deliveryTime": "9:00 PM",
+    "deliveryDetails": "On hold",
     "sender": "Barrister Mrs Rebecca",
     "receiver": "Guidroz Micheal A",
     "packageContent": "Consignment box",
@@ -560,8 +568,8 @@ window.__FEDEX_TRACKING_DATA__ = {
         "date": "11/18/2026 4:50 PM"
       },
       {
-        "title": "OUT FOR DELIVERY",
-        "location": "11014 HWY 1, LOCKPORT, LA 70374, USA",
+        "title": "DELIVERY EXCEPTION",
+        "location": "HOUMA, LA",
         "date": "11/19/2026 7:40 AM"
       }
     ]
